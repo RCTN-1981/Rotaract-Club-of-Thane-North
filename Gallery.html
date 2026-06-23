@@ -3,442 +3,277 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rotaract Club of Thane North</title>
-    <meta name="description" content="Rotaract Club of Thane North — community service, leadership and fellowship.">
+    <title>Gallery — Rotaract Club of Thane North</title>
+    <meta name="description" content="Gallery of moments from Rotaract Club of Thane North events.">
     <link rel="icon" href="images/RCNorth.png">
-    <meta property="og:image" content="https://rctn-1981.github.io/Rotaract-Club-of-Thane-North/images/RC-North-Og-Image.jpg" />
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --accent: #0067a3;
-            --accent-2: #e94b3c;
-            --muted: #6c757d;
-            --maxw: 1150px;
+            --green: #2d6a4f;
+            --green-dark: #1b4332;
+            --green-light: #f0f7f4;
+            --ink: #111827;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --white: #ffffff;
             --radius: 12px;
-            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            --radius-lg: 20px;
+            --maxw: 1150px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--ink); }
 
-        body {
-            background: linear-gradient(180deg,#f7f9fb,#fff);
-            color: #222
+        /* NAVBAR */
+        .navbar { background: rgba(255,255,255,0.92) !important; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0.75rem 0; }
+        .navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+        .navbar-brand-text .brand-main { font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 800; color: var(--ink); }
+        .navbar-brand-text .brand-sub { font-size: 0.72rem; color: var(--muted); }
+        .nav-link { font-size: 0.875rem; font-weight: 500; color: var(--muted) !important; padding: 0.4rem 0.75rem !important; border-radius: 8px; transition: color var(--transition), background var(--transition); }
+        .nav-link:hover { color: var(--green) !important; background: var(--green-light); }
+        .btn-join { background: var(--green); color: var(--white) !important; padding: 0.45rem 1.2rem !important; border-radius: 100px !important; font-weight: 600 !important; }
+        .btn-join:hover { background: var(--green-dark) !important; }
+
+        /* PAGE HEADER */
+        .page-header {
+            background: linear-gradient(135deg, #eef6f1 0%, #fffef9 100%);
+            padding: 4rem 0 3rem; border-bottom: 1px solid var(--border);
         }
+        .page-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--green); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 0.75rem; }
+        .page-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: var(--ink); line-height: 1.1; margin-bottom: 0.75rem; }
+        .page-sub { color: var(--muted); font-size: 1rem; max-width: 500px; }
 
-        /* Hero */
-        .hero {
-            background: linear-gradient(180deg, rgba(0,103,163,0.06), rgba(233,75,60,0.02));
+        /* GALLERY GRID */
+        .gallery-grid {
+            columns: 4;
+            column-gap: 10px;
+            margin-top: 2.5rem;
+        }
+        @media (max-width: 991px) { .gallery-grid { columns: 3; } }
+        @media (max-width: 639px) { .gallery-grid { columns: 2; } }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 10px;
             border-radius: var(--radius);
-            padding: 2rem;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            display: block;
         }
-
-        .hero-image {
-            min-height: 430px;
-            border-radius: var(--radius);
-            background-size: cover;
-            background-position: center;
+        .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item .goverlay {
+            position: absolute; inset: 0;
+            background: rgba(27,67,50,0.52);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity var(--transition);
         }
+        .gallery-item:hover .goverlay { opacity: 1; }
+        .gallery-item .goverlay i { color: white; font-size: 2rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
 
-        /* Cards and gallery tweaks */
-        .card-img-top {
-            height: 160px;
-            object-fit: cover
+        /* LIGHTBOX */
+        .lightbox {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.93);
+            display: flex; align-items: center; justify-content: center;
+            padding: 1rem;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
         }
-
-        .gallery img {
-            height: 140px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer
+        .lightbox.active { opacity: 1; pointer-events: all; }
+        .lightbox-img-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+        .lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: var(--radius); display: block; }
+        .lb-btn {
+            position: fixed; background: rgba(255,255,255,0.12); border: none; color: white;
+            width: 44px; height: 44px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 1.2rem;
+            transition: background var(--transition);
         }
+        .lb-btn:hover { background: rgba(255,255,255,0.25); }
+        .lb-close { top: 1.25rem; right: 1.25rem; }
+        .lb-prev { left: 1.25rem; top: 50%; transform: translateY(-50%); }
+        .lb-next { right: 1.25rem; top: 50%; transform: translateY(-50%); }
+        .lb-counter { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.6); font-size: 0.8rem; font-weight: 500; }
 
-        /* Members overflow */
-        .members-row {
-            overflow: auto;
-            padding-bottom: 8px
-        }
+        @media (min-width: 1200px) { .container-narrow { max-width: var(--maxw); } }
 
-        .member-card {
-            min-width: 220px
-        }
+        /* FOOTER */
+        footer { background: #f7f5ef; border-top: 1px solid var(--border); padding: 3rem 0 1.5rem; margin-top: 4rem; }
+        .footer-heading { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 1rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color var(--transition); }
+        .footer-links a:hover { color: var(--green); }
+        .social-row { display: flex; gap: 0.75rem; }
+        .social-btn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--border); color: var(--ink); text-decoration: none; transition: all var(--transition); }
+        .social-btn:hover { background: var(--green); color: white; transform: translateY(-2px); }
+        .footer-copy { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
 
-        footer {
-            border-top: 1px solid #eee;
-            padding-top: 1rem;
-            padding-bottom: 1rem
-        }
-
-        /* small helpers */
-        .accent {
-            color: var(--accent);
-        }
-
-        .btn-accent {
-            background: var(--accent);
-            color: #fff
-        }
-
-        @media (min-width:1200px) {
-            .container-narrow {
-                max-width: var(--maxw)
-            }
-        }
-
-        @media screen and (max-width: 767.5px) {
-            .mil {
-                max-height: none!important;
-            }
-        }
-
-        .sponsor-logo {
-            width: 160px;
-            height: 160px;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            margin: 0 auto;
-        }
-
-        @media screen and (max-width: 400.5px) {
-            .sponsor-logo {
-                width: 130px !important;
-            }
-        }
-
-        .link-hover:hover {
-    color: var(--primary-color, #0d6efd);
-    transition: color 0.3s ease;
-  }
-
-  /* Social icon styling */
-  .social-icon i {
-    font-size: 1.4rem;
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-  .social-icon:hover i {
-    color: var(--primary-color, #0d6efd);
-    transform: scale(1.15);
-  }
-
-  footer {
-    color: #555;
-  }
-
-  .modal0 {
-    display: none; 
-    position: fixed; 
-    z-index: 9999; 
-    padding-top: 100px; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.4); 
-}
-
-@media screen and (max-width: 767.5px) {
-    .modal-content0 {
-        width: 95% !important;
-    }
-}
-
-/* Modal Content */
-.modal-content0 {
-    background-color: #fff;
-    margin: auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 40%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    animation: fadeIn .3s;
-}
-
-/* Header */
-.modal-header0 h4 {
-    margin: 0;
-}
-
-.modal-header0 hr {
-    margin-top: 10px;
-}
-
-/* Close button */
-.close0, .close1 {
-    color: #333;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close0:hover, .close1:hover {
-    color: red;
-}
-
-/* Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
     </style>
 </head>
 <body>
+
     <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-            <div class="container container-narrow">
-                <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-                    <img src="images/RC-North.png" alt="Rotaract Club of Thane North" width="44" height="44" class="rounded">
-                    <div class="d-flex flex-column">
-                        <small class="fw-bold">Rotaract Club</small>
-                        <small class="text-muted">Thane North</small>
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+        <div class="container container-narrow">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="images/RC-North.png" alt="RCTN" width="40" height="40" class="rounded-circle">
+                <div class="navbar-brand-text">
+                    <div class="brand-main">Rotaract Club</div>
+                    <div class="brand-sub">Thane North</div>
+                </div>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#members">Members</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#sponsors">Sponsors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link btn-join" href="index.html#contact">Join Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <div class="container container-narrow">
+            <div class="page-eyebrow"><i class="bi bi-images"></i> Gallery</div>
+            <h1 class="page-title">Moments That<br>Define Us</h1>
+            <p class="page-sub">A living album of every project, drive, and celebration — click any photo to explore.</p>
+        </div>
+    </div>
+
+    <!-- GALLERY -->
+    <main class="container container-narrow pb-5">
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Images injected by JS for cleaner code -->
+        </div>
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lb-btn lb-close" id="lbClose"><i class="bi bi-x-lg"></i></button>
+        <button class="lb-btn lb-prev" id="lbPrev"><i class="bi bi-chevron-left"></i></button>
+        <div class="lightbox-img-wrap">
+            <img src="" alt="Gallery image" id="lbImg">
+        </div>
+        <button class="lb-btn lb-next" id="lbNext"><i class="bi bi-chevron-right"></i></button>
+        <div class="lb-counter" id="lbCounter"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container container-narrow">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="images/RC-North.png" width="38" height="38" class="rounded-circle" alt="logo">
+                        <div>
+                            <div style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;color:var(--ink);">Rotaract Club</div>
+                            <div style="font-size:0.75rem;color:var(--muted);">Thane North</div>
+                        </div>
                     </div>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="mainNav">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center align-items-center">
-                        <li class="nav-item"><a class="nav-link" href="index.html" target="_blank">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#about" target="_blank">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#members" target="_blank">Members</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#gallery" target="_blank">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#sponsors" target="_blank">Sponsors</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#contact" target="_blank">Contact</a></li>
-                        <li class="nav-item ms-lg-3"><a class="btn btn-accent rounded-pill" href="index.html#join" target="_blank">Join Us</a></li>
-                    </ul>
+                    <p style="font-size:0.875rem;color:var(--muted);margin-top:0.75rem;">Nurturing the next generation of creators and changemakers.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Quick Links</div>
+                    <div class="footer-links">
+                        <a href="index.html#about">About</a>
+                        <a href="Projects.html">Projects</a>
+                        <a href="index.html#sponsors">Sponsors</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Connect</div>
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/company/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.facebook.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-instagram"></i></a>
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        <main class="container container-narrow my-4">
-            <div class="row" style="row-gap: 20px;">
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Hooner.png" alt="hooner" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Deepanjali.jpg" alt="Deepanjali" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Spoorthi.jpg" alt="Spoorthi" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Har-Ghar-Bappa.png" alt="Har-Ghar-Bappa" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Kalakruti.jpg" alt="Kalakruti" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Drop-of-hope.jpg" alt="Drop-of-hope" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Makhanchori.jpg" alt="Makhanchori" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Northern-Rangers.jpg" alt="Northern-Rangers" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/NCL.jpg" alt="NCL" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Snowy-Trials.jpeg" alt="Snowy-Trials" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/NBL.jpg" alt="NBL" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Garba.jpg" alt="Garba" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Snack-Attack.jpg" alt="Snack-Attack" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Social-Slay.png" alt="Social-Slay" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Style-and-Smiles.png" alt="Style-and-Smiles" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Cricket.jpg" alt="Cricket" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/ICYE.jpg" alt="ICYE" class="img-fluid">
-                </div>
-                <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Nature.jpg" alt="Nature" class="img-fluid">
-                </div> -->
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Nature1.JPG" alt="Nature" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/AARA.jpg" alt="AARA" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Ugram.jpg" alt="Ugram" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Snowy-trials-AARA.jpg" alt="Snowy-trials-AARA" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Grp-Photo-AARA.jpg" alt="AARA" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Dosa.jpg" alt="Dosa" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/NTT.jpg" alt="NTT" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Christmas.jpg" alt="Christmas" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Shukriya.jpg" alt="Shukriya" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/NRL.jpg" alt="NRL" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Razzmatazz.jpg" alt="Razzmatazz" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Ride-and-Roll.jpg" alt="Ride-and-Roll" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Smack-That.jpg" alt="Smack-That" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Casa1.jpg" alt="Casa" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Casa2.jpg" alt="Casa" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Casa3.jpg" alt="Casa" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/MV1.jpg" alt="MV" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/MV2.jpg" alt="MV" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/MV3.jpg" alt="MV" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/PAP1.jpg" alt="PAP" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/PAP2.jpg" alt="PAP" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/PAP3.jpg" alt="PAP" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Sahaya1.jpg" alt="Sahaya" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Vasundhara.jpg" alt="Vasundhara" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Aapla-Killa.jpg" alt="Sahaya" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Mehafil.jpg" alt="Mehafil" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Rotary.jpg" alt="Rotary" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Rotary-GBM.jpg" alt="Rotary" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/RYLA.jpg" alt="RYLA" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/OHA.jpg" alt="OHA" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Scd.jpg" alt="Scd" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Scribee1.jpg" alt="Scd" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Scribee2.jpg" alt="Scd" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Scribee3.jpg" alt="Scd" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/BOH.jpg" alt="BOH" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/Rang-Beats.jpg" alt="Rang-Beats" class="img-fluid">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                    <img src="images/NPL.jpg" alt="NPL" class="img-fluid">
-                </div>
-            </div>
-        </main>
-
-
-         <!-- Footer Start -->
-<footer id="contact" class="text-secondary" style="background-color: #fff;">
-  <div class="container py-5">
-    <div class="row text-center text-md-start gy-4">
-      <!-- Logo + Intro -->
-      <div class="col-md-4">
-        <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
-          <img src="images/RC-North.png" height="44" width="44" alt="logo">
+            <p class="footer-copy">© 2025 Rotaract Club of Thane North. All rights reserved.</p>
         </div>
-        <p class="mt-3 text-muted mb-0">
-          Nurturing the next generation of creators and thinkers.
-        </p>
-      </div>
+    </footer>
 
-      <!-- Quick Links -->
-      <div class="col-md-4">
-        <h5 class="fw-bold text-uppercase text-muted">Quick Links</h5>
-        <nav class="mt-3 d-flex flex-column gap-2">
-          <a href="index.html#about" target="_blank" class="text-decoration-none text-secondary link-hover">About</a>
-          <a href="index.html#gallery" target="_blank" class="text-decoration-none text-secondary link-hover">Gallery</a>
-          <a href="index.html#sponsors" class="text-decoration-none text-secondary link-hover">Sponsors</a>
-        </nav>
-      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const images = [
+            'images/Hooner.png','images/Deepanjali.jpg','images/Spoorthi.jpg',
+            'images/Har-Ghar-Bappa.png','images/Kalakruti.jpg','images/Drop-of-hope.jpg',
+            'images/Makhanchori.jpg','images/Northern-Rangers.jpg','images/NCL.jpg',
+            'images/Snowy-Trials.jpeg','images/NBL.jpg','images/Garba.jpg',
+            'images/Snack-Attack.jpg','images/Social-Slay.png','images/Style-and-Smiles.png',
+            'images/Cricket.jpg','images/ICYE.jpg','images/Nature1.JPG',
+            'images/AARA.jpg','images/Ugram.jpg','images/Snowy-trials-AARA.jpg',
+            'images/Grp-Photo-AARA.jpg','images/Dosa.jpg','images/NTT.jpg',
+            'images/Christmas.jpg','images/Shukriya.jpg','images/NRL.jpg',
+            'images/Razzmatazz.jpg','images/Ride-and-Roll.jpg','images/Smack-That.jpg',
+            'images/Casa1.jpg','images/Casa2.jpg','images/Casa3.jpg',
+            'images/MV1.jpg','images/MV2.jpg','images/MV3.jpg',
+            'images/PAP1.jpg','images/PAP2.jpg','images/PAP3.jpg',
+            'images/Sahaya1.jpg','images/Vasundhara.jpg','images/Aapla-Killa.jpg',
+            'images/Mehafil.jpg','images/Rotary.jpg','images/Rotary-GBM.jpg',
+            'images/RYLA.jpg','images/OHA.jpg','images/Scd.jpg',
+            'images/Scribee1.jpg','images/Scribee2.jpg','images/Scribee3.jpg',
+            'images/BOH.jpg','images/Rang-Beats.jpg','images/NPL.jpg',
+            'images/Scatterball-Day.png','images/Elevate.jpg'
+        ];
 
-      <!-- Social Links -->
-      <div class="col-md-4">
-        <h5 class="fw-bold text-uppercase text-muted">Connect with Us</h5>
-        <div class="mt-3 d-flex justify-content-center justify-content-md-start gap-3">
-          <a href="https://www.linkedin.com/company/rcthanenorth/?originalSubdomain=in" target="_blank" class="text-secondary social-icon">
-            <i class="bi bi-linkedin"></i>
-          </a>
-          <a href="https://www.facebook.com/rcthanenorth/" target="_blank" class="text-secondary social-icon">
-            <i class="bi bi-facebook"></i>
-          </a>
-          <a href="https://www.instagram.com/rcthanenorth/" target="_blank" class="text-secondary social-icon">
-            <i class="bi bi-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
+        let current = 0;
+        const grid = document.getElementById('galleryGrid');
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lbImg');
+        const lbCounter = document.getElementById('lbCounter');
 
-    <hr class="my-4 border-dark">
+        // Build grid
+        images.forEach((src, i) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.innerHTML = `<img src="${src}" alt="Gallery photo ${i+1}" loading="lazy"><div class="goverlay"><i class="bi bi-zoom-in"></i></div>`;
+            item.addEventListener('click', () => openLightbox(i));
+            grid.appendChild(item);
+        });
 
-    <div class="text-center text-muted small">
-      <p class="mb-0">© 2025 Rotaract Club of Thane North. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-<!-- Footer End -->
+        function openLightbox(idx) {
+            current = idx;
+            lbImg.src = images[current];
+            lbCounter.textContent = `${current + 1} / ${images.length}`;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function showPrev() { current = (current - 1 + images.length) % images.length; lbImg.src = images[current]; lbCounter.textContent = `${current + 1} / ${images.length}`; }
+        function showNext() { current = (current + 1) % images.length; lbImg.src = images[current]; lbCounter.textContent = `${current + 1} / ${images.length}`; }
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        document.getElementById('lbClose').onclick = closeLightbox;
+        document.getElementById('lbPrev').onclick = showPrev;
+        document.getElementById('lbNext').onclick = showNext;
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+        });
+
+        // Navbar scroll
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    </script>
 </body>
-
 </html>
-
