@@ -7,201 +7,377 @@
     <meta name="description" content="Rotaract Club of Thane North — community service, leadership and fellowship.">
     <link rel="icon" href="images/RCNorth.png">
     <meta property="og:image" content="https://rctn-1981.github.io/Rotaract-Club-of-Thane-North/images/RC-North-Og-Image.jpg" />
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --accent: #0067a3;
-            --accent-2: #e94b3c;
-            --muted: #6c757d;
+            --green: #2d6a4f;
+            --green-dark: #1b4332;
+            --green-light: #f0f7f4;
+            --gold: #c9a84c;
+            --gold-light: #fdf8ee;
+            --ink: #111827;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --surface: #f7f5ef;
+            --white: #ffffff;
+            --radius-sm: 8px;
+            --radius: 14px;
+            --radius-lg: 20px;
             --maxw: 1150px;
-            --radius: 12px;
-            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background: linear-gradient(180deg,#f7f9fb,#fff);
-            color: #222
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--ink);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Hero */
+        /* ── NAVBAR ── */
+        .navbar {
+            background: rgba(255,255,255,0.92) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 0;
+            transition: box-shadow var(--transition);
+        }
+        .navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+        .navbar-brand-text .brand-main { font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 800; color: var(--ink); line-height: 1.2; }
+        .navbar-brand-text .brand-sub { font-size: 0.72rem; color: var(--muted); }
+        .nav-link { font-size: 0.875rem; font-weight: 500; color: var(--muted) !important; padding: 0.4rem 0.75rem !important; border-radius: var(--radius-sm); transition: color var(--transition), background var(--transition); }
+        .nav-link:hover { color: var(--green) !important; background: var(--green-light); }
+        .btn-join { background: var(--green); color: var(--white) !important; padding: 0.45rem 1.2rem !important; border-radius: 100px !important; font-weight: 600 !important; font-size: 0.875rem !important; transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important; }
+        .btn-join:hover { background: var(--green-dark) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(45,106,79,0.35) !important; }
+
+        /* ── HERO ── */
         .hero {
-            background: linear-gradient(180deg, rgba(0,103,163,0.06), rgba(233,75,60,0.02));
-            border-radius: var(--radius);
-            padding: 2rem;
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #eef6f1 0%, #fffef9 50%, #fdf8ee 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 5rem 0 4rem;
         }
-
-        .hero-image {
-            min-height: 430px;
-            border-radius: var(--radius);
-            background-size: cover;
-            background-position: center;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -120px; right: -120px;
+            width: 480px; height: 480px;
+            background: radial-gradient(circle, rgba(45,106,79,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
         }
-
-        /* Cards and gallery tweaks */
-        .card-img-top {
-            height: 160px;
-            object-fit: cover
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: -80px;
+            width: 320px; height: 320px;
+            background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite reverse;
         }
-
-        .gallery img {
-            height: 140px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
-
-        /* Members overflow */
-        .members-row {
-            overflow: auto;
-            padding-bottom: 8px
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--green-light); color: var(--green);
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase; padding: 0.35rem 0.9rem;
+            border-radius: 100px; margin-bottom: 1.25rem;
+            border: 1px solid rgba(45,106,79,0.15);
+            animation: fadeUp 0.6s ease both;
         }
-
-        .member-card {
-            min-width: 220px
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 800; line-height: 1.1;
+            color: var(--ink); margin-bottom: 1.25rem;
+            animation: fadeUp 0.6s 0.1s ease both;
         }
-
-        footer {
-            border-top: 1px solid #eee;
-            padding-top: 1rem;
-            padding-bottom: 1rem
+        .hero h1 span { color: var(--green); }
+        .hero-lead {
+            font-size: 1.05rem; color: var(--muted); max-width: 520px;
+            margin-bottom: 1rem;
+            animation: fadeUp 0.6s 0.2s ease both;
         }
-
-        /* small helpers */
-        .accent {
-            color: var(--accent);
+        .hero-sub {
+            font-size: 0.9rem; color: var(--muted); max-width: 500px;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.6s 0.3s ease both;
         }
-
-        .btn-accent {
-            background: var(--accent);
-            color: #fff
+        .hero-ctas { animation: fadeUp 0.6s 0.4s ease both; }
+        .btn-primary-solid {
+            background: var(--green); color: var(--white);
+            border: none; padding: 0.75rem 1.75rem;
+            border-radius: 100px; font-weight: 600; font-size: 0.9rem;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+            transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
         }
-
-        @media (min-width:1200px) {
-            .container-narrow {
-                max-width: var(--maxw)
-            }
+        .btn-primary-solid:hover { background: var(--green-dark); color: var(--white); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(45,106,79,0.3); }
+        .btn-outline-blue {
+            background: transparent; color: var(--green);
+            border: 1.5px solid var(--green); padding: 0.75rem 1.75rem;
+            border-radius: 100px; font-weight: 600; font-size: 0.9rem;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+            transition: all var(--transition);
         }
+        .btn-outline-blue:hover { background: var(--green); color: var(--white); transform: translateY(-2px); }
 
-        @media screen and (max-width: 767.5px) {
-            .mil {
-                max-height: none!important;
-            }
+        .hero-stats {
+            display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 2.5rem;
+            animation: fadeUp 0.6s 0.5s ease both;
         }
+        .stat-pill {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 0.75rem 1.25rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            text-align: center; min-width: 90px;
+        }
+        .stat-pill .num { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--green); line-height: 1; }
+        .stat-pill .lbl { font-size: 0.72rem; color: var(--muted); font-weight: 500; margin-top: 3px; }
 
-        .sponsor-logo {
-            width: 160px;
-            height: 160px;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
+        .hero-logo-wrap {
+            animation: fadeUp 0.6s 0.2s ease both;
+            position: relative; z-index: 1;
+        }
+        .hero-logo-ring {
+            width: 320px; height: 320px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-light), #fff);
+            border: 2px solid rgba(45,106,79,0.15);
+            display: flex; align-items: center; justify-content: center;
             margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(45,106,79,0.12);
+            animation: float 6s ease-in-out infinite;
+        }
+        .hero-logo-ring img { width: 220px; height: 220px; object-fit: contain; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @media screen and (max-width: 400.5px) {
-            .sponsor-logo {
-                width: 130px !important;
-            }
+        /* ── SECTION HEADERS ── */
+        .section-wrap { padding: 4.5rem 0; }
+        .section-eyebrow {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--green-light); color: var(--green);
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em;
+            text-transform: uppercase; padding: 0.3rem 0.85rem;
+            border-radius: 100px; margin-bottom: 0.75rem;
+        }
+        .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; color: var(--ink); line-height: 1.15; margin-bottom: 0.6rem; }
+        .section-sub { color: var(--muted); font-size: 1rem; max-width: 560px; }
+
+        /* ── ABOUT ── */
+        .about-card {
+            background: linear-gradient(135deg, #eef6f1 0%, #fffef9 100%);
+            border: 1px solid rgba(45,106,79,0.12);
+            border-radius: var(--radius-lg); padding: 2.5rem;
+            position: relative; overflow: hidden;
+        }
+        .about-card::before {
+            content: '';
+            position: absolute; top: 0; right: 0;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(45,106,79,0.08) 0%, transparent 70%);
+        }
+        .mission-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--gold); color: #1b4332;
+            font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.9rem;
+            border-radius: 100px; margin-bottom: 1rem;
         }
 
-        .link-hover:hover {
-    color: var(--primary-color, #0d6efd);
-    transition: color 0.3s ease;
-  }
+        /* ── PROJECT CARDS ── */
+        .project-card {
+            border: 1px solid var(--border); border-radius: var(--radius-lg);
+            overflow: hidden; background: var(--white);
+            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+            height: 100%;
+        }
+        .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.1); border-color: rgba(45,106,79,0.25); }
+        .project-card .img-wrap { position: relative; overflow: hidden; height: 190px; }
+        .project-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .project-card:hover .img-wrap img { transform: scale(1.06); }
+        .project-card .img-wrap .overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(27,67,50,0.7) 0%, transparent 60%);
+            opacity: 0; transition: opacity var(--transition);
+        }
+        .project-card:hover .img-wrap .overlay { opacity: 1; }
+        .project-card .card-body { padding: 1.25rem 1.35rem 1.5rem; }
+        .project-card .card-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; }
+        .project-card .card-text { font-size: 0.875rem; color: var(--muted); line-height: 1.5; }
 
-  /* Social icon styling */
-  .social-icon i {
-    font-size: 1.4rem;
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-  .social-icon:hover i {
-    color: var(--primary-color, #0d6efd);
-    transform: scale(1.15);
-  }
+        /* ── MEMBERS ── */
+        .members-scroll { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+        .members-scroll::-webkit-scrollbar { height: 5px; }
+        .members-scroll::-webkit-scrollbar-track { background: #f3efe6; border-radius: 10px; }
+        .members-scroll::-webkit-scrollbar-thumb { background: var(--green); border-radius: 10px; }
+        .member-card {
+            min-width: 200px; max-width: 200px;
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 1.5rem 1rem;
+            text-align: center; scroll-snap-align: start;
+            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+            flex-shrink: 0;
+        }
+        .member-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.09); border-color: rgba(45,106,79,0.25); }
+        .member-avatar {
+            width: 80px; height: 80px; border-radius: 50%;
+            object-fit: cover; margin: 0 auto 0.85rem;
+            border: 3px solid var(--green-light);
+            display: block;
+        }
+        .member-name { font-weight: 700; font-size: 0.9rem; color: var(--ink); line-height: 1.3; margin-bottom: 0.25rem; }
+        .member-role { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
 
-  footer {
-    color: #555;
-  }
+        /* ── GALLERY ── */
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        @media (max-width: 767px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+        .gallery-item { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 1; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item .goverlay {
+            position: absolute; inset: 0;
+            background: rgba(27,67,50,0.5);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity var(--transition);
+        }
+        .gallery-item:hover .goverlay { opacity: 1; }
+        .gallery-item .goverlay i { color: white; font-size: 1.8rem; }
 
-  .modal0 {
-    display: none; 
-    position: fixed; 
-    z-index: 9999; 
-    padding-top: 100px; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.4); 
-}
+        /* ── LIGHTBOX ── */
+        .lightbox-overlay {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.9);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox-overlay.active { opacity: 1; pointer-events: all; }
+        .lightbox-overlay img { max-width: 90vw; max-height: 85vh; border-radius: var(--radius); object-fit: contain; }
+        .lightbox-close {
+            position: absolute; top: 1.5rem; right: 1.5rem;
+            color: white; font-size: 2rem; cursor: pointer; background: none; border: none;
+            line-height: 1; padding: 0.25rem;
+        }
 
-@media screen and (max-width: 767.5px) {
-    .modal-content0 {
-        width: 95% !important;
-    }
-}
+        /* ── SPONSORS ── */
+        .sponsors-section { background: #f3efe6; border-radius: var(--radius-lg); padding: 3.5rem 2rem; }
+        .sponsor-logo-wrap {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.25rem;
+            display: flex; align-items: center; justify-content: center;
+            height: 110px; transition: box-shadow var(--transition), transform var(--transition);
+        }
+        .sponsor-logo-wrap:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-3px); }
+        .sponsor-logo-wrap img { max-width: 120px; max-height: 70px; object-fit: contain; }
 
-/* Modal Content */
-.modal-content0 {
-    background-color: #fff;
-    margin: auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 40%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    animation: fadeIn .3s;
-}
+        /* ── CONTACT ── */
+        .contact-section {
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+            border-radius: var(--radius-lg); padding: 4rem 2.5rem; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .contact-section::before {
+            content: '';
+            position: absolute; top: -60px; right: -60px;
+            width: 250px; height: 250px;
+            background: rgba(255,255,255,0.06); border-radius: 50%;
+        }
+        .contact-section h2 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: white; margin-bottom: 0.75rem; }
+        .contact-section p { color: rgba(255,255,255,0.8); margin-bottom: 2rem; font-size: 1rem; }
+        .btn-white { background: white; color: var(--green); padding: 0.8rem 2rem; border-radius: 100px; font-weight: 700; font-size: 0.95rem; border: none; cursor: pointer; transition: all var(--transition); display: inline-block; }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .btn-white-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.6); padding: 0.75rem 1.75rem; border-radius: 100px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all var(--transition); text-decoration: none; display: inline-block; }
+        .btn-white-outline:hover { background: rgba(255,255,255,0.15); color: white; }
 
-/* Header */
-.modal-header0 h4 {
-    margin: 0;
-}
+        /* ── MODAL ── */
+        .modal0 { display: none; position: fixed; z-index: 10000; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 1rem; }
+        .modal0.show { display: flex; }
+        .modal0 .modal-box {
+            background: white; border-radius: var(--radius-lg); padding: 2rem;
+            width: 100%; max-width: 440px; position: relative;
+            animation: fadeUp 0.3s ease both;
+        }
+        .modal0 .modal-box h4 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .modal0 .modal-box hr { margin-bottom: 1.25rem; border-color: var(--border); }
+        .modal0 .modal-close { position: absolute; top: 1rem; right: 1.25rem; font-size: 1.5rem; cursor: pointer; color: var(--muted); background: none; border: none; line-height: 1; }
+        .modal0 .modal-close:hover { color: var(--gold); }
+        .modal0 p { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
+        .modal0 strong { color: var(--ink); }
+        .modal0 a { color: var(--green); font-weight: 500; }
+        .contact-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 0.5rem 0 1rem; }
+        .contact-links a { display: inline-flex; align-items: center; gap: 5px; font-size: 0.875rem; background: var(--green-light); color: var(--green); padding: 0.35rem 0.85rem; border-radius: 100px; text-decoration: none; font-weight: 600; transition: background var(--transition); }
+        .contact-links a:hover { background: #d0e8f7; }
 
-.modal-header0 hr {
-    margin-top: 10px;
-}
+        /* ── FOOTER ── */
+        footer { background: #f7f5ef; border-top: 1px solid var(--border); padding: 3rem 0 1.5rem; }
+        .footer-brand .brand-main { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; color: var(--ink); }
+        .footer-brand .brand-sub { font-size: 0.8rem; color: var(--muted); }
+        .footer-tagline { font-size: 0.875rem; color: var(--muted); margin-top: 0.75rem; }
+        .footer-heading { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 1rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color var(--transition); }
+        .footer-links a:hover { color: var(--green); }
+        .social-row { display: flex; gap: 0.75rem; margin-top: 0.25rem; }
+        .social-btn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--border); color: var(--ink); font-size: 1rem; text-decoration: none; transition: all var(--transition); }
+        .social-btn:hover { background: var(--green); color: white; transform: translateY(-2px); }
+        .footer-copy { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
 
-/* Close button */
-.close0, .close1 {
-    color: #333;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
+        /* ── SCROLL REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
-.close0:hover, .close1:hover {
-    color: red;
-}
+        /* ── CONTAINER ── */
+        @media (min-width: 1200px) { .container-narrow { max-width: var(--maxw); } }
 
-/* Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
+        /* ── RESPONSIVE ── */
+        @media (max-width: 767px) {
+            .hero { min-height: auto; padding: 4rem 0 3rem; }
+            .hero-logo-ring { width: 220px; height: 220px; }
+            .hero-logo-ring img { width: 150px; height: 150px; }
+            .hero-stats { gap: 0.75rem; }
+            .stat-pill { min-width: 75px; }
+            .section-wrap { padding: 3rem 0; }
+            .contact-section { padding: 2.5rem 1.5rem; }
+            .sponsors-section { padding: 2rem 1rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
     </style>
 </head>
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
         <div class="container container-narrow">
             <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-                <img src="images/RC-North.png" alt="Rotaract Club of Thane North" width="44" height="44" class="rounded">
-                <div class="d-flex flex-column">
-                    <small class="fw-bold">Rotaract Club</small>
-                    <small class="text-muted">Thane North</small>
+                <img src="images/RC-North.png" alt="RCTN Logo" width="40" height="40" class="rounded-circle">
+                <div class="navbar-brand-text">
+                    <div class="brand-main">Rotaract Club</div>
+                    <div class="brand-sub">Thane North</div>
                 </div>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center align-items-center">
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
@@ -209,486 +385,309 @@
                     <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#sponsors">Sponsors</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item ms-lg-3"><a class="btn btn-accent rounded-pill" href="#join">Join Us</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link btn-join" href="#contact">Join Us</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- MAIN -->
-    <main class="container container-narrow my-4">
-
-        <!-- HERO -->
-        <section id="home" class="hero mb-4">
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-7">
-                    <h1 class="mb-2">Rotaract Club of Thane North</h1>
-                    <p class="lead text-muted">We’re thrilled that you stopped by! We are a community service club for college students and young professionals (16–35) based in Thane, Maharashtra. We focus on community service, professional development and fellowship.</p>
-
-                    <p class="text-muted">Rotaract is an international program founded in 1968 by Rotary International that fosters leadership, responsible citizenship and a spirit of service. We are proud to be part of Rotary International (RID 3142).</p>
-
-                    <div class="d-flex gap-2 flex-wrap mt-3">
-                        <a class="btn btn-accent" href="#projects">Our Projects</a>
-                        <a class="btn btn-outline-primary" href="#contact">Contact</a>
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="container container-narrow">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="hero-eyebrow">
+                        <i class="bi bi-globe2"></i>
+                        Rotary International · RID 3142
                     </div>
-
-                    <div class="d-flex gap-3 mt-4 flex-wrap">
-                        <div class="bg-white p-2 rounded text-center shadow-sm" style="min-width:90px"><div class="fw-bold">50+</div><small class="text-muted">Members</small></div>
-                        <div class="bg-white p-2 rounded text-center shadow-sm" style="min-width:90px"><div class="fw-bold">50+</div><small class="text-muted">Projects</small></div>
-                        <div class="bg-white p-2 rounded text-center shadow-sm" style="min-width:90px"><div class="fw-bold">10+</div><small class="text-muted">Partners</small></div>
+                    <h1>Where <span>Service</span> Meets Leadership</h1>
+                    <p class="hero-lead">A community of young changemakers in Thane, Maharashtra — ages 16–35 — driving real impact through service, fellowship, and growth.</p>
+                    <p class="hero-sub">Part of Rotary International since 1968, we meet every Saturday and Sunday for drives, workshops, and everything in between.</p>
+                    <div class="hero-ctas d-flex gap-3 flex-wrap">
+                        <a class="btn-primary-solid" href="#projects">Our Projects <i class="bi bi-arrow-right"></i></a>
+                        <a class="btn-outline-blue" href="#contact">Contact Us</a>
                     </div>
-
-                    <p class="mt-3 text-muted">Join us every <strong>Saturday and Sunday</strong> for meetups, community drives and leadership workshops.</p>
+                    <div class="hero-stats">
+                        <div class="stat-pill"><div class="num">50+</div><div class="lbl">Members</div></div>
+                        <div class="stat-pill"><div class="num">50+</div><div class="lbl">Projects</div></div>
+                        <div class="stat-pill"><div class="num">10+</div><div class="lbl">Partners</div></div>
+                    </div>
                 </div>
-
-                <div class="col-lg-5">
-                    <img src="images/RC-North.png" class="img-fluid" width="428" height="427" alt="Logo">
+                <div class="col-lg-6 d-flex justify-content-center hero-logo-wrap">
+                    <div class="hero-logo-ring">
+                        <img src="images/RC-North.png" alt="Rotaract Club of Thane North Logo">
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+
+    <main class="container container-narrow">
 
         <!-- ABOUT -->
-        <section id="about" class="mb-4">
-            <h2>About Us</h2>
-            <p class="text-muted">The Rotaract Club of Thane North is part of Rotary International (RID 3142). We lead and support community projects focused on health, education, the environment, and youth development.</p>
-
-            <div class="card p-3">
-                <div class="row g-3 align-items-center">
-                    <div class="col-md-3 col-12 text-center">
-                        <img src="images/Team-RCTN.png" alt="Team" class="img-fluid rounded mil" style="max-height:140px;object-fit:contain">
+        <section id="about" class="section-wrap reveal">
+            <div class="section-eyebrow"><i class="bi bi-info-circle"></i> About Us</div>
+            <h2 class="section-title">Who We Are</h2>
+            <p class="section-sub mb-4">The Rotaract Club of Thane North leads projects focused on health, education, the environment, and youth development.</p>
+            <div class="about-card">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-3 text-center">
+                        <img src="images/Team-RCTN.png" alt="Team RCTN" class="img-fluid rounded-3" style="max-height:160px;object-fit:contain;">
                     </div>
-                    <div class="col-md-9 col-12">
-                        <h3>Our Mission</h3>
-                        <p class="text-muted">To empower young adults to create sustainable community impact through service, professional growth, and meaningful fellowship.</p>
+                    <div class="col-md-9">
+                        <div class="mission-badge"><i class="bi bi-star-fill"></i> Our Mission</div>
+                        <h3 style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--ink);margin-bottom:0.75rem;">Empowering Young Adults to Create Lasting Change</h3>
+                        <p style="color:var(--muted);font-size:0.95rem;line-height:1.7;margin:0;">To empower young adults to create sustainable community impact through service, professional growth, and meaningful fellowship — one project at a time.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- PROJECTS -->
-        <section id="projects" class="mb-4">
-            <h2>Projects</h2>
-            <p class="text-muted">A snapshot of what we do.</p>
-            <div class="row g-3">
+        <section id="projects" class="section-wrap reveal">
+            <div class="section-eyebrow"><i class="bi bi-grid"></i> Projects</div>
+            <h2 class="section-title">What We Do</h2>
+            <p class="section-sub mb-4">A snapshot of the initiatives that define us.</p>
+            <div class="row g-4">
                 <div class="col-md-6 col-lg-4">
-                    <article class="card h-100">
-                        <img src="images/Hooner.png" class="card-img-top" alt="community">
+                    <article class="project-card">
+                        <div class="img-wrap"><img src="images/Hooner.png" alt="Hooner"><div class="overlay"></div></div>
                         <div class="card-body">
-                            <h5 class="card-title">Hooner</h5>
-                            <p class="card-text text-muted">Interschool Arts Competition</p>
+                            <div class="card-title">Hooner</div>
+                            <p class="card-text">Interschool Arts Competition</p>
                         </div>
                     </article>
                 </div>
-
                 <div class="col-md-6 col-lg-4">
-                    <article class="card h-100">
-                        <img src="images/Deepanjali.jpg" class="card-img-top" alt="education">
+                    <article class="project-card">
+                        <div class="img-wrap"><img src="images/Deepanjali.jpg" alt="Deepanjali"><div class="overlay"></div></div>
                         <div class="card-body">
-                            <h5 class="card-title">Deepanjali</h5>
-                            <p class="card-text text-muted">Celebrating Diwali with Specially abled kids</p>
+                            <div class="card-title">Deepanjali</div>
+                            <p class="card-text">Celebrating Diwali with specially abled kids</p>
                         </div>
                     </article>
                 </div>
-
                 <div class="col-md-6 col-lg-4">
-                    <article class="card h-100">
-                        <img src="images/Snowy-Trials.jpeg" class="card-img-top" alt="environment">
+                    <article class="project-card">
+                        <div class="img-wrap"><img src="images/Snowy-Trials.jpeg" alt="Snowy Trails"><div class="overlay"></div></div>
                         <div class="card-body">
-                            <h5 class="card-title">Snowy Trails</h5>
-                            <p class="card-text text-muted">Enjoy the beauty of India with RC Thane North</p>
+                            <div class="card-title">Snowy Trails</div>
+                            <p class="card-text">Enjoy the beauty of India with RC Thane North</p>
                         </div>
                     </article>
                 </div>
-                <br />
-                <center>
-                    <a href="Projects.html" target="_blank" class="btn btn-accent">View More Projects</a>
-                </center>
+            </div>
+            <div class="text-center mt-4">
+                <a href="Projects.html" target="_blank" class="btn-primary-solid">View All Projects <i class="bi bi-arrow-right"></i></a>
             </div>
         </section>
 
         <!-- MEMBERS -->
-        <section id="members" class="mb-4">
-            <h2>Our Team</h2>
-            <p class="text-muted">Meet some of our active members and office-bearers.</p>
-
-            <div class="d-flex gap-3 members-row">
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Ayush-Patil.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Ayush Patil</div>
-                        <div class="text-muted" style="text-align: center;">President</div>
-                    </div>
-                </div>
-
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Ria-Sawant.jpeg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Ria Sawant</div>
-                        <div class="text-muted" style="text-align: center;">Secretary</div>
-                    </div>
-                </div>
-
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Mrunmai-Gaykar.jpeg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Mrunmai Gaykar</div>
-                        <div class="text-muted" style="text-align: center;">Joint Secretary</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Sanskriti-Gaikwad.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Sanskrriti Gaikwad</div>
-                        <div class="text-muted" style="text-align: center;">Vice President & District Joint Graphic Design Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Krish-Deherkar.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Krish Deherkar</div>
-                        <div class="text-muted" style="text-align: center;">Vice President</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Siddhesh-Naik.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Siddhesh Naik</div>
-                        <div class="text-muted" style="text-align: center;">Immediate Past President & Zonal Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Ramona-Sharma.jpeg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Ramona Sharma</div>
-                        <div class="text-muted" style="text-align: center;">Training, Revival and Sustenance Chair</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Gauri-Sawant.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Gauri Sawant</div>
-                        <div class="text-muted" style="text-align: center;">Treasurer</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Sharven-Angne.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Sharven Angne</div>
-                        <div class="text-muted" style="text-align: center;">Joint Treasurer & Sports Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Smera.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Smera Shemberkar</div>
-                        <div class="text-muted" style="text-align: center;">Club Service Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Rishabh-Singh.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Rishabh Singh</div>
-                        <div class="text-muted" style="text-align: center;">Community Service Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Siddhesh-Rane.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Siddhesh Rane</div>
-                        <div class="text-muted" style="text-align: center;">Career Development Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Riddhi-Motwani.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Riddhi Motwani</div>
-                        <div class="text-muted" style="text-align: center;">International Service Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Ananaya-Mishra.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Ananya Mishra</div>
-                        <div class="text-muted" style="text-align: center;">Editorial Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Social-Slay.png" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Yatee Panchpande</div>
-                        <div class="text-muted" style="text-align: center;">Digital Communication Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Neeraj-Narkhede.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Neeraj Narkhede</div>
-                        <div class="text-muted" style="text-align: center;">Public Relations & Marketing Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Shalaka-Sonje.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Shalaka Sonje</div>
-                        <div class="text-muted" style="text-align: center;">Public Relations & Marketing Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Abhishek-Pandey.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Abhishek Pandey</div>
-                        <div class="text-muted" style="text-align: center;">District Corporate Communications Chair</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Amey-Sutar.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Amey Sutar</div>
-                        <div class="text-muted" style="text-align: center;">District Joint Sports Director</div>
-                    </div>
-                </div>
-                <div class="card member-card p-2 d-flex gap-2 align-items-center">
-                    <img src="images/Akash-Pandey.jpg" alt="member" width="156" height="156" class="rounded-circle">
-                    <div>
-                        <div class="fw-bold" style="text-align: center;">Akash Pandey</div>
-                        <div class="text-muted" style="text-align: center;">District Joint Information Technology Director</div>
-                    </div>
-                </div>
+        <section id="members" class="section-wrap reveal">
+            <div class="section-eyebrow"><i class="bi bi-people"></i> Our Team</div>
+            <h2 class="section-title">Meet the Board</h2>
+            <p class="section-sub mb-4">The office-bearers and directors driving our mission this year.</p>
+            <div class="members-scroll">
+                <div class="member-card"><img class="member-avatar" src="images/Ayush-Patil.jpg" alt="Ayush Patil"><div class="member-name">Ayush Patil</div><div class="member-role">President</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Ria-Sawant.jpeg" alt="Ria Sawant"><div class="member-name">Ria Sawant</div><div class="member-role">Secretary</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Mrunmai-Gaykar.jpeg" alt="Mrunmai Gaykar"><div class="member-name">Mrunmai Gaykar</div><div class="member-role">Joint Secretary</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Sanskriti-Gaikwad.jpg" alt="Sanskriti Gaikwad"><div class="member-name">Sanskrriti Gaikwad</div><div class="member-role">Vice President & District Joint Graphic Design Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Krish-Deherkar.jpg" alt="Krish Deherkar"><div class="member-name">Krish Deherkar</div><div class="member-role">Vice President</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Siddhesh-Naik.jpg" alt="Siddhesh Naik"><div class="member-name">Siddhesh Naik</div><div class="member-role">Immediate Past President & Zonal Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Ramona-Sharma.jpeg" alt="Ramona Sharma"><div class="member-name">Ramona Sharma</div><div class="member-role">Training, Revival & Sustenance Chair</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Gauri-Sawant.jpg" alt="Gauri Sawant"><div class="member-name">Gauri Sawant</div><div class="member-role">Treasurer</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Sharven-Angne.jpg" alt="Sharven Angne"><div class="member-name">Sharven Angne</div><div class="member-role">Joint Treasurer & Sports Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Smera.jpg" alt="Smera Shemberkar"><div class="member-name">Smera Shemberkar</div><div class="member-role">Club Service Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Rishabh-Singh.jpg" alt="Rishabh Singh"><div class="member-name">Rishabh Singh</div><div class="member-role">Community Service Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Siddhesh-Rane.jpg" alt="Siddhesh Rane"><div class="member-name">Siddhesh Rane</div><div class="member-role">Career Development Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Riddhi-Motwani.jpg" alt="Riddhi Motwani"><div class="member-name">Riddhi Motwani</div><div class="member-role">International Service Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Ananaya-Mishra.jpg" alt="Ananya Mishra"><div class="member-name">Ananya Mishra</div><div class="member-role">Editorial Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Social-Slay.png" alt="Yatee Panchpande"><div class="member-name">Yatee Panchpande</div><div class="member-role">Digital Communication Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Neeraj-Narkhede.jpg" alt="Neeraj Narkhede"><div class="member-name">Neeraj Narkhede</div><div class="member-role">PR & Marketing Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Shalaka-Sonje.jpg" alt="Shalaka Sonje"><div class="member-name">Shalaka Sonje</div><div class="member-role">PR & Marketing Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Abhishek-Pandey.jpg" alt="Abhishek Pandey"><div class="member-name">Abhishek Pandey</div><div class="member-role">District Corporate Communications Chair</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Amey-Sutar.jpg" alt="Amey Sutar"><div class="member-name">Amey Sutar</div><div class="member-role">District Joint Sports Director</div></div>
+                <div class="member-card"><img class="member-avatar" src="images/Akash-Pandey.jpg" alt="Akash Pandey"><div class="member-name">Akash Pandey</div><div class="member-role">District Joint IT Director</div></div>
             </div>
         </section>
 
         <!-- GALLERY -->
-        <section id="gallery" class="mb-4">
-            <h2>Gallery</h2>
-            <p class="text-muted">Photos from our events — click to enlarge.</p>
-
-            <div class="row g-2">
-                <div class="col-6 col-md-3"><img src="images/Scatterball-Day.png" class="img-fluid" alt="gallery1"></div>
-                <div class="col-6 col-md-3"><img src="images/Hooner.png" class="img-fluid" alt="gallery2"></div>
-                <div class="col-6 col-md-3"><img src="images/Elevate.jpg" class="img-fluid" alt="gallery3"></div>
-                <div class="col-6 col-md-3"><img src="images/Garba.jpg" class="img-fluid" alt="gallery4"></div>
-            </div>
-            <br />
-            <center>
-                <a href="Gallery.html" class="btn btn-accent" target="_blank">View more Photos</a>
-            </center>
-
-            <!-- Lightbox modal -->
-            <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content bg-transparent border-0 shadow-none">
-                        <div class="modal-body p-0 text-center">
-                            <img src="" alt="enlarged" id="lightboxImage" class="img-fluid rounded">
-                        </div>
-                    </div>
+        <section id="gallery" class="section-wrap reveal">
+            <div class="section-eyebrow"><i class="bi bi-images"></i> Gallery</div>
+            <h2 class="section-title">Moments We've Made</h2>
+            <p class="section-sub mb-4">Photos from our events — click to enlarge.</p>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox('images/Scatterball-Day.png')">
+                    <img src="images/Scatterball-Day.png" alt="Scatterball Day">
+                    <div class="goverlay"><i class="bi bi-zoom-in"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('images/Hooner.png')">
+                    <img src="images/Hooner.png" alt="Hooner">
+                    <div class="goverlay"><i class="bi bi-zoom-in"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('images/Elevate.jpg')">
+                    <img src="images/Elevate.jpg" alt="Elevate">
+                    <div class="goverlay"><i class="bi bi-zoom-in"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('images/Garba.jpg')">
+                    <img src="images/Garba.jpg" alt="Garba">
+                    <div class="goverlay"><i class="bi bi-zoom-in"></i></div>
                 </div>
             </div>
-
+            <div class="text-center mt-4">
+                <a href="Gallery.html" target="_blank" class="btn-primary-solid">View Full Gallery <i class="bi bi-arrow-right"></i></a>
+            </div>
         </section>
 
         <!-- SPONSORS -->
-        <section id="sponsors" class="py-5">
-            <div class="container text-center">
-                <h2 class="fw-bold mb-3">Our Sponsors & Partners</h2>
-                <p class="text-muted mb-5">We are thankful to our sponsors and past supporters, who have played an important role in making this competition possible and fostering young talent.</p>
-
-                <div class="row justify-content-center g-4">
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="sponsor-logo" style="background-image: url('./images/Kores-logo.png');"></div>
+        <section id="sponsors" class="section-wrap reveal">
+            <div class="sponsors-section">
+                <div class="text-center mb-4">
+                    <div class="section-eyebrow" style="display:inline-flex;"><i class="bi bi-heart"></i> Sponsors & Partners</div>
+                    <h2 class="section-title">Our Supporters</h2>
+                    <p class="section-sub mx-auto">Grateful to those who've helped us foster young talent and create meaningful change.</p>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="sponsor-logo" style="background-image: url('./images/Apsara-Logo.png');"></div>
+                <div class="row justify-content-center g-3">
+                    <div class="col-6 col-md-4 col-lg-2"><div class="sponsor-logo-wrap"><img src="images/Kores-logo.png" alt="Kores"></div></div>
+                    <div class="col-6 col-md-4 col-lg-2"><div class="sponsor-logo-wrap"><img src="images/Apsara-Logo.png" alt="Apsara"></div></div>
+                    <div class="col-6 col-md-4 col-lg-2"><div class="sponsor-logo-wrap"><img src="images/Sundaram-logo.png" alt="Sundaram"></div></div>
+                    <div class="col-6 col-md-4 col-lg-2"><div class="sponsor-logo-wrap"><img src="images/EnrichWise-logo.jpg" alt="EnrichWise"></div></div>
+                    <div class="col-6 col-md-4 col-lg-2"><div class="sponsor-logo-wrap"><img src="images/Byjus-logo.png" alt="BYJU'S"></div></div>
+                    <div class="col-6 col-md-4 col-lg-2"><div class="sponsor-logo-wrap"><img src="images/Sakal-logo.png" alt="Sakal"></div></div>
+                    <div class="col-6 col-md-4 col-lg-2"><div class="sponsor-logo-wrap"><img src="images/Maharashtra-times-logo.jpg" alt="Maharashtra Times"></div></div>
+                    <div class="col-6 col-md-4 col-lg-2"><div class="sponsor-logo-wrap"><img src="images/HP-Logo.png" alt="HP"></div></div>
+                    <div class="col-6 col-md-4 col-lg-2"><div class="sponsor-logo-wrap"><img src="images/DropTee.png" alt="DropTee"></div></div>
+                    <div class="col-6 col-md-4 col-lg-2"><div class="sponsor-logo-wrap"><img src="images/Klaw.png" alt="Klaw"></div></div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="sponsor-logo" style="background-image: url('./images/Sundaram-logo.png');"></div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="sponsor-logo" style="background-image: url('./images/EnrichWise-logo.jpg');"></div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="sponsor-logo" style="background-image: url('./images/Byjus-logo.png');"></div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="sponsor-logo" style="background-image: url('./images/Sakal-logo.png');"></div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="sponsor-logo" style="background-image: url('./images/Maharashtra-times-logo.jpg');"></div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="sponsor-logo" style="background-image: url('./images/HP-Logo.png');"></div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="sponsor-logo" style="background-image: url('./images/DropTee.png');"></div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="sponsor-logo" style="background-image: url('./images/Klaw.png');"></div>
-                </div>
-                <!-- repeat for others -->
-                </div>
-
-                <div class="mt-5">
-                <button class="btn btn-outline-primary myBtn1">
-                    Become a Sponsor
-                </button>
+                <div class="text-center mt-4">
+                    <button class="btn-primary-solid" id="sponsorBtn">Become a Sponsor <i class="bi bi-arrow-right"></i></button>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT & JOIN -->
-        <section id="contact" class="mb-5">
-            <h2 id="join">Contact & Join</h2>
-             <br />
-             <p>Ready to make a difference? Join our vibrant community of young leaders and changemakers. Tap the button below to be a part of the journey!</p>
-             
-             <br />
-            <center>
-                <button class="btn btn-outline-primary myBtn0">
-                    Join Us?
-                </button>
-            </center>
+        <!-- CONTACT -->
+        <section id="contact" class="section-wrap reveal">
+            <div class="contact-section">
+                <h2 id="join">Ready to Make a Difference?</h2>
+                <p>Join our vibrant community of young leaders and changemakers. Together, we go further.</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <button class="btn-white" id="joinBtn">Join Us Today</button>
+                    <a href="https://www.instagram.com/rcthanenorth/" target="_blank" class="btn-white-outline"><i class="bi bi-instagram me-1"></i> Follow Us</a>
+                </div>
+            </div>
         </section>
-
-        <div id="myModal0" class="modal0">
-
-            <!-- Modal content -->
-            <div class="modal-content0">
-                <div class="modal-header0">
-                    <span class="close0">&times;</span>
-                    <h4><b>Contact Us</b></h4>
-                    <hr />
-                </div>
-
-                <div class="modal-body0">
-                    <p>For more detials contact us at:</p>
-                    <p><b>+91 99302 90520 | +91 97021 69052 | +91 70459 44404</b></p>
-                    <p>Or message us at</p>
-                    <a href="https://www.instagram.com/rcthanenorth/" target="_blank">Instagram</a> |
-                    <a href="https://www.facebook.com/rcthanenorth/" target="_blank">Facebook</a> |
-                    <a href="https://www.linkedin.com/company/rcthanenorth/?originalSubdomain=in" target="_blank">LinkedIn</a>
-                    <br />
-                    <p>Or email us at:</p>
-                    <a href="mailto:rotaractclubofthanenorth@gmail.com" target="_blank">rotaractclubofthanenorth@gmail.com</a>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div id="myModal1" class="modal0">
-
-            <!-- Modal content -->
-            <div class="modal-content0">
-                <div class="modal-header0">
-                    <span class="close1">&times;</span>
-                    <h4><b>Sponsor Hooner</b></h4>
-                    <hr />
-                </div>
-
-                <div class="modal-body0">
-                    <p>For more details call us at:</p>
-                    <p><b>+91 99302 90520 | +91 97021 69052 | +91 70459 44404</b></p>
-                    <p>Or email us at:</p>
-                    <a href="mailto:rotaractclubofthanenorth@gmail.com" target="_blank">rotaractclubofthanenorth@gmail.com</a>
-                </div>
-
-            </div>
-
-        </div>
 
     </main>
 
-    <!-- Footer Start -->
-<footer id="contact" class="text-secondary" style="background-color: #fff;">
-  <div class="container py-5">
-    <div class="row text-center text-md-start gy-4">
-      <!-- Logo + Intro -->
-      <div class="col-md-4">
-        <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
-          <img src="images/RC-North.png" height="44" width="44" alt="logo">
-        </div>
-        <p class="mt-3 text-muted mb-0">
-          Nurturing the next generation of creators and thinkers.
-        </p>
-      </div>
-
-      <!-- Quick Links -->
-      <div class="col-md-4">
-        <h5 class="fw-bold text-uppercase text-muted">Quick Links</h5>
-        <nav class="mt-3 d-flex flex-column gap-2">
-          <a href="index.html#about" target="_blank" class="text-decoration-none text-secondary link-hover">About</a>
-          <a href="index.html#gallery" target="_blank" class="text-decoration-none text-secondary link-hover">Gallery</a>
-          <a href="index.html#sponsors" class="text-decoration-none text-secondary link-hover">Sponsors</a>
-        </nav>
-      </div>
-
-      <!-- Social Links -->
-      <div class="col-md-4">
-        <h5 class="fw-bold text-uppercase text-muted">Connect with Us</h5>
-        <div class="mt-3 d-flex justify-content-center justify-content-md-start gap-3">
-          <a href="https://www.linkedin.com/company/rcthanenorth/?originalSubdomain=in" target="_blank" class="text-secondary social-icon">
-            <i class="bi bi-linkedin"></i>
-          </a>
-          <a href="https://www.facebook.com/rcthanenorth/" target="_blank" class="text-secondary social-icon">
-            <i class="bi bi-facebook"></i>
-          </a>
-          <a href="https://www.instagram.com/rcthanenorth/" target="_blank" class="text-secondary social-icon">
-            <i class="bi bi-instagram"></i>
-          </a>
-        </div>
-      </div>
+    <!-- LIGHTBOX -->
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()"><i class="bi bi-x-lg"></i></button>
+        <img src="" alt="Enlarged" id="lightboxImg">
     </div>
 
-    <hr class="my-4 border-dark">
-
-    <div class="text-center text-muted small">
-      <p class="mb-0">© 2025 Rotaract Club of Thane North. All rights reserved.</p>
+    <!-- MODAL: Join/Contact -->
+    <div id="joinModal" class="modal0">
+        <div class="modal-box">
+            <button class="modal-close" id="closeJoin">&times;</button>
+            <h4>Get in Touch</h4>
+            <hr>
+            <p>Call or WhatsApp us:</p>
+            <p><strong>+91 75063 75758 &nbsp;|&nbsp; +91 97021 69052 &nbsp;|&nbsp; +91 88280 67046</strong></p>
+            <p style="margin-top:1rem;">Message us on social:</p>
+            <div class="contact-links">
+                <a href="https://www.instagram.com/rcthanenorth/" target="_blank"><i class="bi bi-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/rcthanenorth/" target="_blank"><i class="bi bi-facebook"></i> Facebook</a>
+                <a href="https://www.linkedin.com/company/rcthanenorth/" target="_blank"><i class="bi bi-linkedin"></i> LinkedIn</a>
+            </div>
+            <p>Or email us:</p>
+            <a href="mailto:rotaractclubofthanenorth@gmail.com">rotaractclubofthanenorth@gmail.com</a>
+        </div>
     </div>
-  </div>
-</footer>
-<!-- Footer End -->
 
-    <!-- Bootstrap JS -->
+    <!-- MODAL: Sponsor -->
+    <div id="sponsorModal" class="modal0">
+        <div class="modal-box">
+            <button class="modal-close" id="closeSponsor">&times;</button>
+            <h4>Sponsor Hooner</h4>
+            <hr>
+            <p>For details, call us:</p>
+            <p><strong>+91 75063 75758 &nbsp;|&nbsp; +91 97021 69052 &nbsp;|&nbsp; +91 88280 67046</strong></p>
+            <p style="margin-top:1rem;">Or email:</p>
+            <a href="mailto:rotaractclubofthanenorth@gmail.com">rotaractclubofthanenorth@gmail.com</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container container-narrow">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center gap-2 footer-brand">
+                        <img src="images/RC-North.png" width="38" height="38" class="rounded-circle" alt="logo">
+                        <div>
+                            <div class="brand-main">Rotaract Club</div>
+                            <div class="brand-sub">Thane North</div>
+                        </div>
+                    </div>
+                    <p class="footer-tagline">Nurturing the next generation of creators and changemakers.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Quick Links</div>
+                    <div class="footer-links">
+                        <a href="#about">About</a>
+                        <a href="#projects">Projects</a>
+                        <a href="Gallery.html" target="_blank">Gallery</a>
+                        <a href="#sponsors">Sponsors</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Connect With Us</div>
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/company/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.facebook.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p class="footer-copy">© 2025 Rotaract Club of Thane North. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    
-    <script type="text/javascript">
-        $('.myBtn0').click(function () {
-
-            $('#myModal0').show();
-
-        })
-
-        $('.myBtn1').click(function () {
-
-            $('#myModal1').show();
-
-        })
-
-        $('.close0').click(function () {
-            $('#myModal0').hide();
+    <script>
+        // Navbar scroll shadow
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 20);
         });
 
-        $('.close1').click(function () {
-            $('#myModal1').hide();
-        });
+        // Scroll reveal
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        revealEls.forEach(el => observer.observe(el));
 
-        $(window).click(function (event) {
-            if (event.target.id == "myModal0") {
-                $('#myModal0').hide();
-            }
-        });
+        // Lightbox
+        function openLightbox(src) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-        $(window).click(function (event) {
-            if (event.target.id == "myModal1") {
-                $('#myModal1').hide();
-            }
-        });
+        // Modals
+        document.getElementById('joinBtn').onclick = () => document.getElementById('joinModal').classList.add('show');
+        document.getElementById('closeJoin').onclick = () => document.getElementById('joinModal').classList.remove('show');
+        document.getElementById('joinModal').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('show'); });
+
+        document.getElementById('sponsorBtn').onclick = () => document.getElementById('sponsorModal').classList.add('show');
+        document.getElementById('closeSponsor').onclick = () => document.getElementById('sponsorModal').classList.remove('show');
+        document.getElementById('sponsorModal').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('show'); });
     </script>
 </body>
-
 </html>
-
-
-
