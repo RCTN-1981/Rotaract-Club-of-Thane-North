@@ -3,537 +3,249 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rotaract Club of Thane North</title>
-    <meta name="description" content="Rotaract Club of Thane North — community service, leadership and fellowship.">
+    <title>Projects — Rotaract Club of Thane North</title>
+    <meta name="description" content="All projects by Rotaract Club of Thane North.">
     <link rel="icon" href="images/RCNorth.png">
-    <meta property="og:image" content="https://rctn-1981.github.io/Rotaract-Club-of-Thane-North/images/RC-North-Og-Image.jpg" />
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --accent: #0067a3;
-            --accent-2: #e94b3c;
-            --muted: #6c757d;
+            --green: #2d6a4f;
+            --green-dark: #1b4332;
+            --green-light: #f0f7f4;
+            --gold: #c9a84c;
+            --ink: #111827;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --surface: #f9fafb;
+            --white: #ffffff;
+            --radius: 14px;
+            --radius-lg: 20px;
             --maxw: 1150px;
-            --radius: 12px;
-            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--ink); line-height: 1.6; }
 
-        body {
-            background: linear-gradient(180deg,#f7f9fb,#fff);
-            color: #222
+        /* NAVBAR */
+        .navbar { background: rgba(255,255,255,0.92) !important; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0.75rem 0; }
+        .navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+        .navbar-brand-text .brand-main { font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 800; color: var(--ink); }
+        .navbar-brand-text .brand-sub { font-size: 0.72rem; color: var(--muted); }
+        .nav-link { font-size: 0.875rem; font-weight: 500; color: var(--muted) !important; padding: 0.4rem 0.75rem !important; border-radius: 8px; transition: color var(--transition), background var(--transition); }
+        .nav-link:hover { color: var(--green) !important; background: var(--green-light); }
+        .btn-join { background: var(--green); color: var(--white) !important; padding: 0.45rem 1.2rem !important; border-radius: 100px !important; font-weight: 600 !important; }
+        .btn-join:hover { background: var(--green-dark) !important; }
+
+        /* PAGE HEADER */
+        .page-header {
+            background: linear-gradient(135deg, #eef6f1 0%, #fffef9 100%);
+            padding: 4rem 0 3rem; border-bottom: 1px solid var(--border);
         }
+        .page-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--green); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 0.75rem; }
+        .page-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: var(--ink); line-height: 1.1; margin-bottom: 0.75rem; }
+        .page-sub { color: var(--muted); font-size: 1rem; max-width: 500px; }
 
-        /* Hero */
-        .hero {
-            background: linear-gradient(180deg, rgba(0,103,163,0.06), rgba(233,75,60,0.02));
-            border-radius: var(--radius);
-            padding: 2rem;
+        /* FILTER TABS */
+        .filter-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 2rem 0 2.5rem; }
+        .filter-btn { border: 1.5px solid var(--border); background: var(--white); color: var(--muted); font-size: 0.8rem; font-weight: 600; padding: 0.4rem 1rem; border-radius: 100px; cursor: pointer; transition: all var(--transition); }
+        .filter-btn:hover, .filter-btn.active { background: var(--green); color: white; border-color: var(--green); }
+
+        /* PROJECT CARDS */
+        .project-card {
+            border: 1px solid var(--border); border-radius: var(--radius-lg);
+            overflow: hidden; background: var(--white); height: 100%;
+            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
         }
+        .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.1); border-color: rgba(45,106,79,0.3); }
+        .project-card .img-wrap { position: relative; overflow: hidden; height: 190px; }
+        .project-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+        .project-card:hover .img-wrap img { transform: scale(1.06); }
+        .project-card .img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(27,67,50,0.65) 0%, transparent 60%); opacity: 0; transition: opacity var(--transition); }
+        .project-card:hover .img-overlay { opacity: 1; }
+        .project-card .card-body { padding: 1.25rem 1.35rem 1.5rem; }
+        .card-category { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem; }
+        .card-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; }
+        .card-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.55; }
 
-        .hero-image {
-            min-height: 430px;
-            border-radius: var(--radius);
-            background-size: cover;
-            background-position: center;
-        }
+        /* REVEAL */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* Cards and gallery tweaks */
-        .card-img-top {
-            height: 160px;
-            object-fit: cover
-        }
+        @media (min-width: 1200px) { .container-narrow { max-width: var(--maxw); } }
 
-        .gallery img {
-            height: 140px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer
-        }
+        /* FOOTER */
+        footer { background: #f7f5ef; border-top: 1px solid var(--border); padding: 3rem 0 1.5rem; margin-top: 4rem; }
+        .footer-heading { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 1rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color var(--transition); }
+        .footer-links a:hover { color: var(--green); }
+        .social-row { display: flex; gap: 0.75rem; }
+        .social-btn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--border); color: var(--ink); text-decoration: none; transition: all var(--transition); }
+        .social-btn:hover { background: var(--green); color: white; transform: translateY(-2px); }
+        .footer-copy { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
 
-        /* Members overflow */
-        .members-row {
-            overflow: auto;
-            padding-bottom: 8px
-        }
-
-        .member-card {
-            min-width: 220px
-        }
-
-        footer {
-            border-top: 1px solid #eee;
-            padding-top: 1rem;
-            padding-bottom: 1rem
-        }
-
-        /* small helpers */
-        .accent {
-            color: var(--accent);
-        }
-
-        .btn-accent {
-            background: var(--accent);
-            color: #fff
-        }
-
-        @media (min-width:1200px) {
-            .container-narrow {
-                max-width: var(--maxw)
-            }
-        }
-
-        @media screen and (max-width: 767.5px) {
-            .mil {
-                max-height: none!important;
-            }
-        }
-
-        .link-hover:hover {
-    color: var(--primary-color, #0d6efd);
-    transition: color 0.3s ease;
-  }
-
-  /* Social icon styling */
-  .social-icon i {
-    font-size: 1.4rem;
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-  .social-icon:hover i {
-    color: var(--primary-color, #0d6efd);
-    transform: scale(1.15);
-  }
-
-  footer {
-    color: #555;
-  }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
     </style>
-    <body>
+</head>
+<body>
 
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-            <div class="container container-narrow">
-                <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-                    <img src="images/RC-North.png" alt="Rotaract Club of Thane North" width="44" height="44" class="rounded">
-                    <div class="d-flex flex-column">
-                        <small class="fw-bold">Rotaract Club</small>
-                        <small class="text-muted">Thane North</small>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+        <div class="container container-narrow">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="images/RC-North.png" alt="RCTN" width="40" height="40" class="rounded-circle">
+                <div class="navbar-brand-text">
+                    <div class="brand-main">Rotaract Club</div>
+                    <div class="brand-sub">Thane North</div>
+                </div>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#members">Members</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#sponsors">Sponsors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link btn-join" href="index.html#contact">Join Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <div class="container container-narrow">
+            <div class="page-eyebrow"><i class="bi bi-grid"></i> All Projects</div>
+            <h1 class="page-title">Every Initiative,<br>Every Story</h1>
+            <p class="page-sub">From community service to cultural celebrations — here's everything we've done together.</p>
+        </div>
+    </div>
+
+    <main class="container container-narrow py-4">
+
+        <!-- FILTER TABS -->
+        <div class="filter-row">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="community">Community</button>
+            <button class="filter-btn" data-filter="sports">Sports</button>
+            <button class="filter-btn" data-filter="culture">Culture</button>
+            <button class="filter-btn" data-filter="fellowship">Fellowship</button>
+        </div>
+
+        <!-- PROJECT GRID -->
+        <div class="row g-4" id="projectGrid">
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/Hooner.png" alt="Hooner"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Hooner</div><p class="card-desc">Interschool Arts Competition organized by RC Thane North</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/Deepanjali.jpg" alt="Deepanjali"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Deepanjali</div><p class="card-desc">Celebrating Diwali with specially abled kids</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="fellowship"><article class="project-card"><div class="img-wrap"><img src="images/Snowy-Trials.jpeg" alt="Snowy Trails"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Fellowship</div><div class="card-title">Snowy Trails</div><p class="card-desc">Enjoy the beauty of India with RC Thane North</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="sports"><article class="project-card"><div class="img-wrap"><img src="images/Spoorthi.jpg" alt="Spoorthi"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Sports</div><div class="card-title">Spoorthi</div><p class="card-desc">Interschool Sports Competition organized by RC Thane North</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/Makhanchori.jpg" alt="Makhanchori"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Makhanchori</div><p class="card-desc">Celebrate Janmashtami with specially abled kids</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/Kalakruti.jpg" alt="Kalakruti"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Kalakruti</div><p class="card-desc">Drawing competition for kids</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="sports"><article class="project-card"><div class="img-wrap"><img src="images/NBL.jpg" alt="NBL"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Sports</div><div class="card-title">North Basketball League</div><p class="card-desc">Basketball tournament open for all</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="sports"><article class="project-card"><div class="img-wrap"><img src="images/NCL.jpg" alt="NCL"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Sports</div><div class="card-title">North Cricket League</div><p class="card-desc">Fun cricket tournament for club members</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="culture"><article class="project-card"><div class="img-wrap"><img src="images/Aapla-Killa.jpg" alt="Aapla Killa"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Culture</div><div class="card-title">Aapla Killa</div><p class="card-desc">Relive the childhood memory of making killa on Diwali</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="culture"><article class="project-card"><div class="img-wrap"><img src="images/Garba.jpg" alt="Garba"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Culture</div><div class="card-title">Garba Dhamaal</div><p class="card-desc">Enjoy Navratri with RCTN</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="fellowship"><article class="project-card"><div class="img-wrap"><img src="images/Social-Slay.png" alt="Social Slay"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Fellowship</div><div class="card-title">Social Slay</div><p class="card-desc">A fun workshop all about social media</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="fellowship"><article class="project-card"><div class="img-wrap"><img src="images/Northern-Rangers.jpg" alt="Northern Rangers"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Fellowship</div><div class="card-title">Northern Rangers</div><p class="card-desc">A fun trek into the beauty of nature</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="fellowship"><article class="project-card"><div class="img-wrap"><img src="images/Snack-Attack.jpg" alt="Snack Attack"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Fellowship</div><div class="card-title">Snack Attack (Potluck)</div><p class="card-desc">Come with a dish, leave with a story</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/Elevate.jpg" alt="Project Elevate"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Project Elevate</div><p class="card-desc">Lt. Col. Manoj Kumar Sinha shared powerful lessons on building self-confidence & positive self-image</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="culture"><article class="project-card"><div class="img-wrap"><img src="images/Har-Ghar-Bappa.png" alt="Har Ghar Bappa"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Culture</div><div class="card-title">Har Ghar Bappa</div><p class="card-desc">Bappa's darshan at the homes of our beloved Rotaractors</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="sports"><article class="project-card"><div class="img-wrap"><img src="images/Scatterball-Day.png" alt="Scatterball Day"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Sports</div><div class="card-title">Scatterball Day</div><p class="card-desc">Fun game of Scatterball</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/Drop-of-hope.jpg" alt="Drop of Hope"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Drop of Hope</div><p class="card-desc">Blood donation drive</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/Style-and-Smiles.png" alt="Styles and Smiles"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Styles and Smiles</div><p class="card-desc">Grooming & haircuts by Diamond Salon at Divya Prabha Girls Orphanage</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/Vasundhara.jpg" alt="Vasundhara"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Vasundhara</div><p class="card-desc">Tree plantation drive</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/MV1.jpg" alt="Mission Vision"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Mission Vision</div><p class="card-desc">Free health check-up for kids at Saraswati School</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/Casa3.jpg" alt="Casa D'Amour"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Casa D'Amour</div><p class="card-desc">Free eye & health check-up at old age home</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="culture"><article class="project-card"><div class="img-wrap"><img src="images/Christmas.jpg" alt="Christmas Soiree"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Culture</div><div class="card-title">Christmas Soiree</div><p class="card-desc">Christmas celebration with RCTN</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="sports"><article class="project-card"><div class="img-wrap"><img src="images/Smack-That.jpg" alt="Smack That"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Sports</div><div class="card-title">Smack That</div><p class="card-desc">A fast, fun, and friendly badminton game</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="fellowship"><article class="project-card"><div class="img-wrap"><img src="images/Ride-and-Roll.jpg" alt="Ride and Roll"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Fellowship</div><div class="card-title">Ride and Roll</div><p class="card-desc">A fun night-time bicycle ride through Mumbai</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/PAP4.jpg" alt="Paws and Protect"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Paws and Protect</div><p class="card-desc">Caring for street dogs — feeding and giving them collars</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/Sahaya3.jpg" alt="Sahayya"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Sahayya</div><p class="card-desc">Heartfelt postcards of gratitude to unsung heroes who keep our city running</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="culture"><article class="project-card"><div class="img-wrap"><img src="images/Rang-Beats.jpg" alt="Rang Beats"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Culture</div><div class="card-title">Rang Beats</div><p class="card-desc">Celebrate the festival of colors — Holi — with RCTN</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/BOH.jpg" alt="Boards of Hope"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Boards of Hope</div><p class="card-desc">Boards with a message for a social cause</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="fellowship"><article class="project-card"><div class="img-wrap"><img src="images/NTT.jpg" alt="Next Think Tank"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Fellowship</div><div class="card-title">Next Think Tank</div><p class="card-desc">Expert talks and interactive workshops to empower young minds</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="fellowship"><article class="project-card"><div class="img-wrap"><img src="images/Dosa.jpg" alt="Dosa Carnival"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Fellowship</div><div class="card-title">Dosa Carnival</div><p class="card-desc">Learning to make crispy, tasty dosas together</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="community"><article class="project-card"><div class="img-wrap"><img src="images/Mehafil.jpg" alt="Sangeet ki Mehfil"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Community</div><div class="card-title">Sangeet ki Mehfil</div><p class="card-desc">Fun evenings with aaji-ajobas at old age home</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="sports"><article class="project-card"><div class="img-wrap"><img src="images/Scribee3.jpg" alt="Ultimate Frisbee"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Sports</div><div class="card-title">Ultimate Frisbee</div><p class="card-desc">Some fun and competitive Frisbee</p></div></article></div>
+            <div class="col-md-6 col-lg-4 reveal project-item" data-cat="fellowship"><article class="project-card"><div class="img-wrap"><img src="images/Shukriya.jpg" alt="Shukriya"><div class="img-overlay"></div></div><div class="card-body"><div class="card-category">Fellowship</div><div class="card-title">Shukriya</div><p class="card-desc">Thanking all members for a successful year</p></div></article></div>
+        </div>
+
+        <!-- EMPTY STATE -->
+        <div id="emptyState" style="display:none; text-align:center; padding:4rem 0; color:var(--muted);">
+            <i class="bi bi-search" style="font-size:2.5rem; opacity:0.4; display:block; margin-bottom:0.75rem;"></i>
+            No projects in this category yet.
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container container-narrow">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="images/RC-North.png" width="38" height="38" class="rounded-circle" alt="logo">
+                        <div>
+                            <div style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;color:var(--ink);">Rotaract Club</div>
+                            <div style="font-size:0.75rem;color:var(--muted);">Thane North</div>
+                        </div>
                     </div>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="mainNav">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center align-items-center">
-                        <li class="nav-item"><a class="nav-link" href="index.html" target="_blank">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#about" target="_blank">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#members" target="_blank">Members</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#gallery" target="_blank">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#sponsors" target="_blank">Sponsors</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html#contact" target="_blank">Contact</a></li>
-                        <li class="nav-item ms-lg-3"><a class="btn btn-accent rounded-pill" href="index.html#join" target="_blank">Join Us</a></li>
-                    </ul>
+                    <p style="font-size:0.875rem;color:var(--muted);margin-top:0.75rem;">Nurturing the next generation of creators and changemakers.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Quick Links</div>
+                    <div class="footer-links">
+                        <a href="index.html#about">About</a>
+                        <a href="Gallery.html">Gallery</a>
+                        <a href="index.html#sponsors">Sponsors</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Connect</div>
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/company/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.facebook.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-instagram"></i></a>
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        <main class="container container-narrow my-4">
-            <section class="mb-4">
-                <h2>Projects</h2>
-                <p class="text-muted">A snapshot of what we do.</p>
-                <div class="row g-3">
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Hooner.png" class="card-img-top" alt="community">
-                            <div class="card-body">
-                                <h5 class="card-title">Hooner</h5>
-                                <p class="card-text text-muted">Interschool Arts Competition organized by RC Thane North</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Deepanjali.jpg" class="card-img-top" alt="education">
-                            <div class="card-body">
-                                <h5 class="card-title">Deepanjali</h5>
-                                <p class="card-text text-muted">Celebrating Diwali with Specially abled kids</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Snowy-Trials.jpeg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Snowy Trails</h5>
-                                <p class="card-text text-muted">Enjoy the beauty of India with RC Thane North</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Spoorthi.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Spoorthi</h5>
-                                <p class="card-text text-muted">Interschool Sports Competition organized by RC Thane North</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Makhanchori.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Makhanchori</h5>
-                                <p class="card-text text-muted">Celebrate Janmashtami with Specially abled kids</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Kalakruti.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Kalakruti</h5>
-                                <p class="card-text text-muted">Drawing Competiton for kids</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/NBL.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">North Basketball League</h5>
-                                <p class="card-text text-muted">Basketball Tournament open for all</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/NCL.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">North Cricket League</h5>
-                                <p class="card-text text-muted">Fun cricket Tournament for Club members</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Aapla-Killa.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Aapla Killa</h5>
-                                <p class="card-text text-muted">Relive the chilhood memory of making killa on Diwali</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Garba.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Garba Dhamaal</h5>
-                                <p class="card-text text-muted">Enjoy navaratri with RCTN</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Social-Slay.png" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Social Slay</h5>
-                                <p class="card-text text-muted">A fun workshop that's all about social media</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Northern-Rangers.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Northern Rangers</h5>
-                                <p class="card-text text-muted">A fun trek into the beauty of nature</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Snack-Attack.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Snack Attack (Potluck)</h5>
-                                <p class="card-text text-muted">Come with a dish, leave with a story</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Elevate.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Project Elevate</h5>
-                                <p class="card-text text-muted">Lt. Col. Manoj Kumar Sinha shared powerful lessons on Building Self-Confidence & Positive Self-Image.</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Har-Ghar-Bappa.png" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Har Ghar Bappa</h5>
-                                <p class="card-text text-muted">Bappa's Darshan at the homes of our beloved Rotaractors</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Scatterball-Day.png" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Scatterball Day</h5>
-                                <p class="card-text text-muted">Fun game of Scatterball</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Drop-of-hope.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Drop of Hope</h5>
-                                <p class="card-text text-muted">Blood donation drive</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Style-and-Smiles.png" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Styles and Smiles</h5>
-                                <p class="card-text text-muted">Grooming and beautiful haircuts by Diamond salon and Academy to our amazing girls at Divya Prabha Girls Orphanage</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Vasundhara.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Vasundhara</h5>
-                                <p class="card-text text-muted">Tree Plantation Drive</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/MV1.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Mission Vision</h5>
-                                <p class="card-text text-muted">Free Health Check Up for kids at Saraswati School</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Casa3.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Casa D'Amour</h5>
-                                <p class="card-text text-muted">Free Eye and Health Check Up at old age home</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Christmas.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Christmas Soiree</h5>
-                                <p class="card-text text-muted">Christmas Celebration with RCTN</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Smack-That.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Smack That</h5>
-                                <p class="card-text text-muted">A fast, fun, and friendly badminton game</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Ride-and-Roll.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Ride and Roll</h5>
-                                <p class="card-text text-muted">A fun night-time bicycle ride through Mumbai</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/PAP4.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Paws and Protect</h5>
-                                <p class="card-text text-muted">Caring for street dogs by feeding them and giving them collars</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Sahaya3.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Sahayya</h5>
-                                <p class="card-text text-muted">Unsung heroes who keep our city running — workers, cleaners, policemen, and many more, through heartfelt postcards of gratitude</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Rang-Beats.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Rang Beats</h5>
-                                <p class="card-text text-muted">Celebrate the festival of colors - Holi, with RCTN</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/BOH.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Boards of Hope</h5>
-                                <p class="card-text text-muted">Boards with a message for a social cause</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/NTT.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Next Think Tank</h5>
-                                <p class="card-text text-muted">An inspiring event featuring expert talks and interactive workshops to empower young minds</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Dosa.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Dosa Carnival</h5>
-                                <p class="card-text text-muted">Learning to make some crispy, inner peace giving and tasty dosa's</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Mehafil.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Sangeet ki Mehfil</h5>
-                                <p class="card-text text-muted">Fun evenings with aaji ajobas at old age home</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Scribee3.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Ultimate Firsbee</h5>
-                                <p class="card-text text-muted">Some fun and competeive game of Firsbee</p>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <article class="card h-100">
-                            <img src="images/Shukriya.jpg" class="card-img-top" alt="environment">
-                            <div class="card-body">
-                                <h5 class="card-title">Shukriya</h5>
-                                <p class="card-text text-muted">Thanking all the members of the club for a succesfull year</p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer Start -->
-<footer id="contact" class="text-secondary" style="background-color: #fff;">
-  <div class="container py-5">
-    <div class="row text-center text-md-start gy-4">
-      <!-- Logo + Intro -->
-      <div class="col-md-4">
-        <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
-          <img src="images/RC-North.png" height="44" width="44" alt="logo">
+            <p class="footer-copy">© 2025 Rotaract Club of Thane North. All rights reserved.</p>
         </div>
-        <p class="mt-3 text-muted mb-0">
-          Nurturing the next generation of creators and thinkers.
-        </p>
-      </div>
+    </footer>
 
-      <!-- Quick Links -->
-      <div class="col-md-4">
-        <h5 class="fw-bold text-uppercase text-muted">Quick Links</h5>
-        <nav class="mt-3 d-flex flex-column gap-2">
-          <a href="index.html#about" target="_blank" class="text-decoration-none text-secondary link-hover">About</a>
-          <a href="index.html#gallery" target="_blank" class="text-decoration-none text-secondary link-hover">Gallery</a>
-          <a href="index.html#sponsors" class="text-decoration-none text-secondary link-hover">Sponsors</a>
-        </nav>
-      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
 
-      <!-- Social Links -->
-      <div class="col-md-4">
-        <h5 class="fw-bold text-uppercase text-muted">Connect with Us</h5>
-        <div class="mt-3 d-flex justify-content-center justify-content-md-start gap-3">
-          <a href="https://www.linkedin.com/company/rcthanenorth/?originalSubdomain=in" target="_blank" class="text-secondary social-icon">
-            <i class="bi bi-linkedin"></i>
-          </a>
-          <a href="https://www.facebook.com/rcthanenorth/" target="_blank" class="text-secondary social-icon">
-            <i class="bi bi-facebook"></i>
-          </a>
-          <a href="https://www.instagram.com/rcthanenorth/" target="_blank" class="text-secondary social-icon">
-            <i class="bi bi-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
+        // Scroll reveal
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    <hr class="my-4 border-dark">
-
-    <div class="text-center text-muted small">
-      <p class="mb-0">© 2025 Rotaract Club of Thane North. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-<!-- Footer End -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    </body>
-
-</head>
-
-
+        // Filter
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.dataset.filter;
+                let visible = 0;
+                document.querySelectorAll('.project-item').forEach(item => {
+                    const show = filter === 'all' || item.dataset.cat === filter;
+                    item.style.display = show ? '' : 'none';
+                    if (show) visible++;
+                });
+                document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
