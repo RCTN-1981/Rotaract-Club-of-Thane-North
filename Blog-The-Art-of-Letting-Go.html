@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Art of Letting Go — Rotaract Club of Thane North</title>
+    <meta name="description" content="A reflection on what it really means to let go — of people, memories, and versions of ourselves.">
+    <link rel="icon" href="images/RCNorth.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #6d4aa0; --green-dark: #4a2f70; --green-light: #f3eefb;
+            --ink: #111827; --muted: #6b7280; --border: #e5e7eb; --white: #ffffff;
+            --radius: 14px; --radius-lg: 20px; --maxw: 1150px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--ink); line-height: 1.6; }
+
+        .navbar { background: rgba(255,255,255,0.92) !important; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0.75rem 0; }
+        .navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+        .navbar-brand-text .brand-main { font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 800; color: var(--ink); }
+        .navbar-brand-text .brand-sub { font-size: 0.72rem; color: var(--muted); }
+        .nav-link { font-size: 0.875rem; font-weight: 500; color: var(--muted) !important; padding: 0.4rem 0.75rem !important; border-radius: 8px; }
+        .nav-link:hover { color: var(--green) !important; background: var(--green-light); }
+        .btn-join { background: var(--green); color: var(--white) !important; padding: 0.45rem 1.2rem !important; border-radius: 100px !important; font-weight: 600 !important; }
+        .btn-join:hover { background: var(--green-dark) !important; }
+
+        .article-header { background: linear-gradient(135deg, #eef6f1 0%, #fffef9 100%); padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+        .back-link { font-size: 0.85rem; font-weight: 600; color: var(--green); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1.5rem; }
+        .back-link:hover { color: var(--green-dark); }
+        .article-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--green); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 1rem; }
+        .article-title { font-family: 'Syne', sans-serif; font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; color: var(--ink); line-height: 1.2; max-width: 760px; margin-bottom: 1rem; }
+        .article-meta { font-size: 0.85rem; color: var(--muted); display: flex; gap: 1rem; flex-wrap: wrap; }
+        .article-meta span { display: flex; align-items: center; gap: 5px; }
+
+        .article-body { max-width: 720px; margin: 0 auto; padding: 3rem 0; }
+        .article-body p { font-size: 1.05rem; color: #374151; line-height: 1.85; margin-bottom: 1.4rem; }
+
+        @media (min-width: 1200px) { .container-narrow { max-width: var(--maxw); } }
+
+        footer { background: #f7f5ef; border-top: 1px solid var(--border); padding: 3rem 0 1.5rem; margin-top: 3rem; }
+        .footer-heading { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 1rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; }
+        .footer-links a:hover { color: var(--green); }
+        .social-row { display: flex; gap: 0.75rem; }
+        .social-btn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--border); color: var(--ink); text-decoration: none; transition: all var(--transition); }
+        .social-btn:hover { background: var(--green); color: white; transform: translateY(-2px); }
+        .footer-copy { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+        <div class="container container-narrow">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="images/RC-North.png" alt="RCTN" width="40" height="40" class="rounded-circle">
+                <div class="navbar-brand-text">
+                    <div class="brand-main">Rotaract Club</div>
+                    <div class="brand-sub">Thane North</div>
+                </div>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#members">Members</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Blogs.html">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link btn-join" href="index.html#contact">Join Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ARTICLE HEADER -->
+    <div class="article-header">
+        <div class="container container-narrow">
+            <a href="Blogs.html" class="back-link"><i class="bi bi-arrow-left"></i> Back to Blogs</a>
+            <div class="article-eyebrow"><i class="bi bi-journal-text"></i> Reflections</div>
+            <h1 class="article-title">The Art of Letting Go</h1>
+            <div class="article-meta">
+                <span><i class="bi bi-person"></i> By LJ</span>
+                <span><i class="bi bi-clock"></i> 4 min read</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARTICLE BODY -->
+    <main class="container container-narrow">
+        <article class="article-body">
+            <p>The art of letting go. Doesn't it sound heavy just to read it completely, while it's even heavier to actually do?</p>
+
+            <p>Growing up, we tend to hear a lot of people say that you should be strong enough to let go of things, or rather, that you should love something enough to let it go. But nobody teaches you how to do it, and nobody talks about what happens after you decide to do it.</p>
+
+            <p>"You should be strong enough to let go."</p>
+
+            <p>"If you love it enough, you should let it go."</p>
+
+            <p>But what does letting go actually mean?</p>
+
+            <p>Does it mean you stop thinking about that person?</p>
+
+            <p>Does it mean the memory suddenly stops hurting?</p>
+
+            <p>Does it mean you no longer wish things had turned out differently?</p>
+
+            <p>Probably not.</p>
+
+            <p>Everyone has a different perception of what letting go means. Some think of it as forgetting, as if nothing ever happened. Some take it as pretending in front of the world that they have let go. And there are countless other interpretations.</p>
+
+            <p>Maybe what scares us most about letting go isn't actually losing the thing itself, but not knowing who we'll be without it. We get so used to carrying certain people, memories, expectations, and what-ifs that they become a part of our identity. So when we finally put them down, there's an emptiness that feels unfamiliar.</p>
+
+            <p>But sometimes, that emptiness isn't something that needs to be filled. Sometimes, it is simply space — space for something new to exist.</p>
+
+            <p>We spend so much of our lives learning how to hold on — to people, to places, to memories, to dreams, to versions of ourselves that no longer exist. We hold on even when our hands are tired, even when something has already slipped away. Perhaps because somewhere along the way, we were taught that letting go means losing.</p>
+
+            <p>But maybe it doesn't.</p>
+
+            <p>Maybe letting go is not about forgetting. Maybe it is not about suddenly becoming okay with what happened. Maybe it is simply accepting that some things were meant to be a part of our story, without necessarily being a part of our future.</p>
+
+            <p>It is understanding that maybe it was supposed to happen this way. It is starting to believe that whatever happens, happens for a reason. It is slowly adjusting to the reality of what actually happened, rather than constantly thinking about what could have happened instead.</p>
+
+            <p>Letting go is slowly accepting that maybe it was meant to happen.</p>
+
+            <p>And perhaps that is the hardest art to learn.</p>
+
+            <p>We have such a strong habit of holding on and putting effort into things that letting go feels almost unnatural. It feels weird to stop trying, to stop fixing things, to stop giving something the effort you once gave so effortlessly. It doesn't feel like yourself anymore. You feel different.</p>
+
+            <p>There comes a point where holding on stops being an act of love and starts becoming an act of abandoning yourself. You keep making excuses, giving chances, replaying conversations, hoping for a different ending — not because you don't know the truth, but because accepting it would mean accepting that your efforts were no longer enough.</p>
+
+            <p>And maybe growing up is recognising that choosing yourself doesn't mean you cared any less. It simply means you finally realised that your peace deserves a place in the equation too.</p>
+
+            <p>And somewhere along the way, you meet a version of yourself that didn't exist before. A version that knows when to stop holding on, when to accept things for what they are, and when to choose peace over persistence.</p>
+
+            <p>That version of you amazes you. But at the same time, it hurts to witness.</p>
+
+            <p>Because sometimes, becoming someone who knows how to let go means leaving behind the person who spent so long trying to hold everything together.</p>
+
+            <p>Letting go isn't an art. It is courage. It is bravery. It is every difficult choice you made to finally choose your peace.</p>
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container container-narrow">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="images/RC-North.png" width="38" height="38" class="rounded-circle" alt="logo">
+                        <div>
+                            <div style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;color:var(--ink);">Rotaract Club</div>
+                            <div style="font-size:0.75rem;color:var(--muted);">Thane North</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Quick Links</div>
+                    <div class="footer-links">
+                        <a href="index.html#about">About</a>
+                        <a href="Projects.html">Projects</a>
+                        <a href="Gallery.html">Gallery</a>
+                        <a href="Blogs.html">Blogs</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Connect</div>
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/company/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.facebook.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p class="footer-copy">© 2025 Rotaract Club of Thane North. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    </script>
+</body>
+</html>
