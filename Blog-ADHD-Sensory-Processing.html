@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>I Love the Rain. I Just Can't Be In It. — Rotaract Club of Thane North</title>
+    <meta name="description" content="A piece on ADHD and sensory processing — why ordinary sensations can feel overwhelming, and why that deserves to be taken seriously.">
+    <link rel="icon" href="images/RCNorth.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #6d4aa0; --green-dark: #4a2f70; --green-light: #f3eefb;
+            --ink: #111827; --muted: #6b7280; --border: #e5e7eb; --white: #ffffff;
+            --radius: 14px; --radius-lg: 20px; --maxw: 1150px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--ink); line-height: 1.6; }
+
+        .navbar { background: rgba(255,255,255,0.92) !important; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0.75rem 0; }
+        .navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+        .navbar-brand-text .brand-main { font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 800; color: var(--ink); }
+        .navbar-brand-text .brand-sub { font-size: 0.72rem; color: var(--muted); }
+        .nav-link { font-size: 0.875rem; font-weight: 500; color: var(--muted) !important; padding: 0.4rem 0.75rem !important; border-radius: 8px; }
+        .nav-link:hover { color: var(--green) !important; background: var(--green-light); }
+        .btn-join { background: var(--green); color: var(--white) !important; padding: 0.45rem 1.2rem !important; border-radius: 100px !important; font-weight: 600 !important; }
+        .btn-join:hover { background: var(--green-dark) !important; }
+
+        .article-header { background: linear-gradient(135deg, #eef6f1 0%, #fffef9 100%); padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+        .back-link { font-size: 0.85rem; font-weight: 600; color: var(--green); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1.5rem; }
+        .back-link:hover { color: var(--green-dark); }
+        .article-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--green); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 1rem; }
+        .article-title { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; color: var(--ink); line-height: 1.25; max-width: 760px; margin-bottom: 0.5rem; }
+        .article-subtitle { font-size: 1rem; font-weight: 600; color: var(--green); font-style: italic; margin-bottom: 1rem; }
+        .article-meta { font-size: 0.85rem; color: var(--muted); display: flex; gap: 1rem; flex-wrap: wrap; }
+        .article-meta span { display: flex; align-items: center; gap: 5px; }
+
+        .article-body { max-width: 720px; margin: 0 auto; padding: 3rem 0; }
+        .article-body p { font-size: 1.05rem; color: #374151; line-height: 1.85; margin-bottom: 1.4rem; }
+        .article-body h2 { font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--ink); margin: 2.25rem 0 1.1rem; line-height: 1.35; }
+        .article-note { font-size: 0.92rem; color: var(--muted); font-style: italic; border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 0.5rem; }
+
+        @media (min-width: 1200px) { .container-narrow { max-width: var(--maxw); } }
+
+        footer { background: #f7f5ef; border-top: 1px solid var(--border); padding: 3rem 0 1.5rem; margin-top: 3rem; }
+        .footer-heading { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 1rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; }
+        .footer-links a:hover { color: var(--green); }
+        .social-row { display: flex; gap: 0.75rem; }
+        .social-btn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--border); color: var(--ink); text-decoration: none; transition: all var(--transition); }
+        .social-btn:hover { background: var(--green); color: white; transform: translateY(-2px); }
+        .footer-copy { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+        <div class="container container-narrow">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="images/RC-North.png" alt="RCTN" width="40" height="40" class="rounded-circle">
+                <div class="navbar-brand-text">
+                    <div class="brand-main">Rotaract Club</div>
+                    <div class="brand-sub">Thane North</div>
+                </div>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#members">Members</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Blogs.html">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link btn-join" href="index.html#contact">Join Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ARTICLE HEADER -->
+    <div class="article-header">
+        <div class="container container-narrow">
+            <a href="Blogs.html" class="back-link"><i class="bi bi-arrow-left"></i> Back to Blogs</a>
+            <div class="article-eyebrow"><i class="bi bi-journal-text"></i> Health & Wellness</div>
+            <h1 class="article-title">I Love the Rain. I Just Can't Be In It.</h1>
+            <p class="article-subtitle">ADHD and Sensory Processing</p>
+            <div class="article-meta">
+                <span><i class="bi bi-clock"></i> 8 min read</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARTICLE BODY -->
+    <main class="container container-narrow">
+        <article class="article-body">
+            <p>There is a particular kind of irony in loving the rain as much as I do and being, to put it mildly, absolutely terrified of being caught in it.</p>
+
+            <p>Rain is beautiful. The sound of it against a window, the smell of wet earth, the sky turning grey and heavy with clouds, the general gloom of a rainy afternoon — genuinely, it's all lovely. There is something about a world that has gone quiet under a blanket of clouds that I find almost impossible not to romanticise.</p>
+
+            <p>Actually having to go outside in it, however, is a different story entirely.</p>
+
+            <p>Friends have joked that the level of hydrophobia that I display is comparable to that of a rabid animal. It is funny, in the way that many things are funny when they sound completely disproportionate to the situation. After all, it's just rain. People walk in it every day. People deliberately go for walks in it, stand on balconies to enjoy it, and make entire personalities out of romanticising monsoons. Meanwhile, the possibility of getting caught in the rain has, on more than one occasion, been enough to trigger genuine panic. I've cancelled plans, skipped classes and concerts, and abandoned perfectly enjoyable events at the mere thought of having to step outside and get wet. When I was younger, I used to carry an umbrella til December, well beyond the season in which it was remotely necessary, purely as a contingency plan.</p>
+
+            <p>It sounds ridiculous when laid out like that. That is, perhaps, part of the problem.</p>
+
+            <p>Because the issue isn't a dislike of rain. It isn't even a particularly rational fear of getting wet. It is the anticipation of a sensory experience so deeply uncomfortable that avoiding it can begin to feel more urgent than anything else on the day's agenda. The panic isn't an attempt to be difficult, a performance, or a particularly elaborate way of expressing a preference. And yet, from the outside, it can look an awful lot like all three.</p>
+
+            <p>This is one of the less visible ways sensory sensitivity can affect a person's life. It can turn something ordinary, something most people barely register, into an experience that is genuinely distressing, and make the resulting avoidance look wildly out of proportion to what is actually happening.</p>
+
+            <h2>When an ordinary sensation becomes too much</h2>
+
+            <p>Sensory processing is how the nervous system receives information from the environment, organises it, and helps determine how to respond. That information comes from all the obvious sources (sight, sound, smell, taste and touch) as well as less immediately noticeable systems involved in balance, movement and awareness of the body's position.</p>
+
+            <p>For most people, the sensation of a few raindrops on their skin is just that: a sensation. It might be mildly unpleasant, or it might not register as anything worth thinking about at all. For someone with significant sensory sensitivity, the same experience can be intrusive, distracting, overwhelming or intensely aversive. The feeling of water on the skin, damp clothes clinging to the body, wet hair against the neck, the sudden cold, the uncertainty of when the sensation will stop — what seems like one minor inconvenience can become an entire collection of things that feel wrong at once.</p>
+
+            <p>And rain is only one example.</p>
+
+            <p>Wool can feel unbearably scratchy. Certain synthetic fabrics can feel as though they are constantly catching against the skin. A clothing tag can be impossible to ignore. The seams of a sock might occupy an unreasonable amount of mental space. Background noise that everyone else seems to have filtered out can make it difficult to concentrate on a conversation. Bright lights, strong smells, unexpected touch or the texture of particular foods can provoke similarly intense reactions.</p>
+
+            <p>These aren't necessarily experiences of physical pain, and they don't have to be. Sensory discomfort exists on a spectrum, and a sensation does not need to be painful in the conventional sense to be difficult to tolerate. The important distinction is between something that is merely disliked and something that repeatedly interferes with a person's ability to function.</p>
+
+            <p>That distinction matters because sensory sensitivity is often dismissed as fussiness. Someone refuses to wear a particular fabric, avoids a crowded room, insists on changing out of wet clothes immediately, or becomes visibly distressed over something other people find perfectly tolerable. It is easy to interpret these reactions as pickiness, dramatics, or an unwillingness to put up with minor inconveniences.</p>
+
+            <p>But the intensity of a sensory experience isn't determined by how significant it appears to somebody watching from the outside. And when a person starts organising their life around avoiding a sensation, it is worth asking what that sensation actually feels like to them.</p>
+
+            <h2>What does this have to do with ADHD?</h2>
+
+            <p>Sensory sensitivity is frequently discussed in conversations about neurodivergence, particularly autism, where differences in sensory reactivity are a recognised part of the diagnostic criteria. It is also commonly reported by people with ADHD, although it is not itself a core diagnostic criterion for ADHD. There is no single sensory profile that applies to every neurodivergent person.</p>
+
+            <p>So why bring it up in an article about ADHD awareness?</p>
+
+            <p>Because ADHD is often reduced to a familiar handful of traits: difficulty concentrating, forgetfulness, restlessness, impulsivity, an inability to sit still. Those experiences are real, but they do not capture the full range of difficulties that people with ADHD may report. Research has found differences in sensory processing among people with ADHD, including heightened sensitivity to certain stimuli. The relationship is complex, and researchers are still working to understand how sensory reactivity relates to attention, emotional regulation and other aspects of the condition.</p>
+
+            <p>One possibility is that filtering and prioritising sensory information can be more difficult for some people. The brain is constantly receiving more information than conscious attention can accommodate. Much of the time, it helps us focus on what matters and disregard what doesn't. But when sensory input remains unusually prominent, it can be harder to ignore, redirect attention away from, or simply get on with the task at hand. Sensory sensitivity is not simply a matter of having a lower tolerance for discomfort.</p>
+
+            <p>The most significant consequence of sensory sensitivity is not always the sensation itself. Sometimes, it is everything a person does to avoid experiencing it.</p>
+
+            <p>Consider the logistics of a rainy day. Checking the weather before leaving, carrying an umbrella long after everyone else has put theirs away, calculating whether a journey is worth the risk of getting caught in a shower, choosing not to attend an event because the route involves walking outside and there's a 52% chance of rain, feeling anxious hours before leaving the house because the forecast looks uncertain, and so on.</p>
+
+            <p>Individually, these behaviours might seem harmless, even sensible. Carrying an umbrella is hardly a cause for concern, checking the weather is ordinary, avoiding getting drenched is a perfectly reasonable preference.</p>
+
+            <p>But when the possibility of rain begins determining whether someone attends classes, sees friends or leaves the house at all, the issue is no longer just an aversion to getting wet. It is a sensory difficulty with consequences that extend into everyday life.</p>
+
+            <p>There is also the anticipatory anxiety — the distress that begins before the sensory experience has even occurred. When someone has repeatedly found a sensation overwhelming, the prospect of encountering it again can become a source of anxiety in its own right. The person may begin planning around it, searching for ways to guarantee that it will not happen, or avoiding situations in which it might happen.</p>
+
+            <p>Avoidance can provide immediate relief, which makes it understandable that someone would continue doing it. But when avoidance becomes the main way of managing distress, it can gradually restrict a person's life. The world becomes organised around preventing an experience rather than participating in activities that matter to them.</p>
+
+            <p>It is also worth noting that not every sensory aversion needs to be overcome, and forcing someone to endure an overwhelming sensation is not automatically helpful. The point is not that everyone should learn to tolerate rain, scratchy clothes or noisy environments at any cost. It is that the level of distress, the degree of avoidance and the impact on daily functioning deserve to be taken seriously.</p>
+
+            <p>A person should not have to wait until a difficulty becomes debilitating before anyone believes that it exists.</p>
+
+            <h2>It isn't always something that can be explained away</h2>
+
+            <p>One of the frustrating things about sensory sensitivity is how difficult it can be to communicate to someone who does not experience it in the same way.</p>
+
+            <p>How do you explain that you can love the appearance and sound of rain but find the prospect of being in it intolerable? How do you explain that a fabric is not merely uncomfortable, but so distracting that you cannot stop thinking about it? How do you explain why a situation that seems manageable to everyone around you has become something you are actively planning your day around avoiding?</p>
+
+            <p>There isn't always a neat explanation. Sensory experiences are subjective, and the same stimulus can produce very different responses in different people. Telling someone that rain is harmless does not address the discomfort they associate with being wet. Telling someone that a jumper is soft does not change how that jumper feels against their skin. And telling someone to stop overreacting does not make an overwhelming sensation disappear.</p>
+
+            <p>This does not mean every intense reaction is necessarily caused by sensory processing differences, or that distress should never be examined or managed. When sensory sensitivities cause substantial anxiety or interfere with everyday activities, professional support can help identify what is happening and explore ways to make life more manageable. Depending on the individual, that might involve practical adjustments, psychological support for associated anxiety, or strategies developed with an appropriately qualified clinician. There is no universal fix, and the right approach depends on the nature of the difficulty.</p>
+
+            <p>Sometimes, the most useful first step is considerably less complicated: taking the person's experience seriously instead of treating it as a fault that needs to be corrected. The fact that a sensation is ordinary does not mean the experience of it is ordinary for everyone.</p>
+
+            <p>This isn't an argument that rain is dangerous, that everyone who dislikes wool has a sensory processing difficulty, or that every unusual preference should be medicalised. There is a difference between having preferences and experiencing a persistent, distressing difficulty that limits what you can do. Context matters. So does severity.</p>
+
+            <p>It is also not an invitation to turn someone's distress into an entertaining anecdote. There is a reason these experiences can be funny when described from the outside: the apparent mismatch between the trigger and the reaction is unexpected. But the humour can obscure what is actually being described. If someone has repeatedly cried at the prospect of going out in the rain, that is not simply a funny story about being dramatic. It is an indication that an ordinary part of daily life has become genuinely difficult for them.</p>
+
+            <p>And that is worth understanding, even if the experience itself seems unfamiliar.</p>
+
+            <p>Neurodiversity awareness is not only about recognising the symptoms that are easiest to identify or the difficulties that are easiest to explain. It is also about making room for experiences that seem disproportionate, contradictory or inexplicable until someone takes the time to understand them.</p>
+
+            <p>Sometimes a person can love the rain and still be terrified of stepping into it. Sometimes a particular fabric really can be intolerable. Sometimes the small, ordinary things that barely register for one person can consume an extraordinary amount of another person's energy.</p>
+
+            <p>The point is not that everyone needs to understand exactly what that feels like. It is that they should not have to experience it themselves before they are willing to believe it.</p>
+
+            <p class="article-note">Note: this article has focused on the example of rain, as that is the starting point of this essay. Sensory issues extend well beyond that to a wide range of different stimuli.</p>
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container container-narrow">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="images/RC-North.png" width="38" height="38" class="rounded-circle" alt="logo">
+                        <div>
+                            <div style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;color:var(--ink);">Rotaract Club</div>
+                            <div style="font-size:0.75rem;color:var(--muted);">Thane North</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Quick Links</div>
+                    <div class="footer-links">
+                        <a href="index.html#about">About</a>
+                        <a href="Projects.html">Projects</a>
+                        <a href="Gallery.html">Gallery</a>
+                        <a href="Blogs.html">Blogs</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Connect</div>
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/company/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.facebook.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p class="footer-copy">© 2025 Rotaract Club of Thane North. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    </script>
+</body>
+</html>
