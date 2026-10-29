@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Why Wasn't I Crying? — Rotaract Club of Thane North</title>
+    <meta name="description" content="On ADHD and emotional dysregulation — why feeling an emotion and showing it are not the same thing, and why expression is no measure of care.">
+    <link rel="icon" href="images/RCNorth.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #6d4aa0; --green-dark: #4a2f70; --green-light: #f3eefb;
+            --ink: #111827; --muted: #6b7280; --border: #e5e7eb; --white: #ffffff;
+            --radius: 14px; --radius-lg: 20px; --maxw: 1150px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--ink); line-height: 1.6; }
+
+        .navbar { background: rgba(255,255,255,0.92) !important; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0.75rem 0; }
+        .navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+        .navbar-brand-text .brand-main { font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 800; color: var(--ink); }
+        .navbar-brand-text .brand-sub { font-size: 0.72rem; color: var(--muted); }
+        .nav-link { font-size: 0.875rem; font-weight: 500; color: var(--muted) !important; padding: 0.4rem 0.75rem !important; border-radius: 8px; }
+        .nav-link:hover { color: var(--green) !important; background: var(--green-light); }
+        .btn-join { background: var(--green); color: var(--white) !important; padding: 0.45rem 1.2rem !important; border-radius: 100px !important; font-weight: 600 !important; }
+        .btn-join:hover { background: var(--green-dark) !important; }
+
+        .article-header { background: linear-gradient(135deg, #eef6f1 0%, #fffef9 100%); padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+        .back-link { font-size: 0.85rem; font-weight: 600; color: var(--green); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1.5rem; }
+        .back-link:hover { color: var(--green-dark); }
+        .article-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--green); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 1rem; }
+        .article-title { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; color: var(--ink); line-height: 1.25; max-width: 760px; margin-bottom: 0.5rem; }
+        .article-subtitle { font-size: 1rem; font-weight: 600; color: var(--green); font-style: italic; margin-bottom: 1rem; }
+        .article-meta { font-size: 0.85rem; color: var(--muted); display: flex; gap: 1rem; flex-wrap: wrap; }
+        .article-meta span { display: flex; align-items: center; gap: 5px; }
+
+        .article-body { max-width: 720px; margin: 0 auto; padding: 3rem 0; }
+        .article-body p { font-size: 1.05rem; color: #374151; line-height: 1.85; margin-bottom: 1.4rem; }
+        .article-body h2 { font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--ink); margin: 2.25rem 0 1.1rem; line-height: 1.35; }
+        .article-body a { color: var(--green); font-weight: 500; }
+        .article-body a:hover { color: var(--green-dark); }
+        .article-body strong { color: var(--ink); }
+        .article-body p.article-note { font-size: 0.92rem; color: var(--muted); font-style: italic; border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 2rem; }
+
+        @media (min-width: 1200px) { .container-narrow { max-width: var(--maxw); } }
+
+        footer { background: #f7f5ef; border-top: 1px solid var(--border); padding: 3rem 0 1.5rem; margin-top: 3rem; }
+        .footer-heading { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 1rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; }
+        .footer-links a:hover { color: var(--green); }
+        .social-row { display: flex; gap: 0.75rem; }
+        .social-btn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--border); color: var(--ink); text-decoration: none; transition: all var(--transition); }
+        .social-btn:hover { background: var(--green); color: white; transform: translateY(-2px); }
+        .footer-copy { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+        <div class="container container-narrow">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="images/RC-North.png" alt="RCTN" width="40" height="40" class="rounded-circle">
+                <div class="navbar-brand-text">
+                    <div class="brand-main">Rotaract Club</div>
+                    <div class="brand-sub">Thane North</div>
+                </div>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#members">Members</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Blogs.html">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link btn-join" href="index.html#contact">Join Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ARTICLE HEADER -->
+    <div class="article-header">
+        <div class="container container-narrow">
+            <a href="Blogs.html" class="back-link"><i class="bi bi-arrow-left"></i> Back to Blogs</a>
+            <div class="article-eyebrow"><i class="bi bi-journal-text"></i> Health &amp; Wellness</div>
+            <h1 class="article-title">Why Wasn't I Crying?</h1>
+            <p class="article-subtitle">ADHD and Emotional Dysregulation</p>
+            <div class="article-meta">
+                <span><i class="bi bi-clock"></i> 12 min read</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARTICLE BODY -->
+    <main class="container container-narrow">
+        <article class="article-body">
+            <p>I have a very distinct memory of my brother asking me why I wasn't crying after our grandmother died.</p>
+            <p>It is a strange question to remember, perhaps, but I do. There is something particularly uncomfortable about being asked to demonstrate grief on demand, as though the absence of tears is evidence of the absence of love. I don't remember having a particularly good answer for him. I still don't know if I would have one now.</p>
+            <p>What I do remember is crying after accidentally stepping on a butterfly.</p>
+            <p>There is something almost comical about putting these two things next to each other. A death in the family, and an insect. One is a loss that people understand should hurt; the other is something most people would probably forget about by the time they reached the end of the path. And yet, the expected emotional response did not arrive in one situation, while the comparatively insignificant event left me struggling to hold back tears.</p>
+            <p>It would be easy to turn this into a story about being heartless in one moment and ridiculously sensitive in another. It would also be completely wrong to assume that either reaction, on its own, tells us very much about how much someone cares.</p>
+            <p>We are remarkably good at assigning meaning to other people's emotions. Tears mean sadness. Anger means hostility. A blank face means indifference. An unusually intense reaction means someone is being dramatic. We learn these associations early, and we use them to make quick judgements about the people around us.</p>
+            <p>But emotions do not always arrive when they are expected, last as long as they are expected to, or present themselves in ways that other people recognise. And for people with ADHD, the relationship between feeling an emotion and managing its expression can be particularly complicated.</p>
+            <h2>ADHD is not just an attention problem</h2>
+            <p>When people talk about ADHD, the conversation tends to centre on attention, hyperactivity, impulsivity and executive dysfunction. These are the symptoms most commonly associated with the condition, and they are central to its diagnosis.</p>
+            <p>But, what gets discussed considerably less is emotional dysregulation. Emotional dysregulation refers to difficulty managing the intensity, duration or expression of an emotional response. It can mean becoming frustrated very quickly, experiencing rejection or criticism with overwhelming intensity, struggling to calm down after being upset, or finding that an emotion takes over far more of one's attention than the situation seems to warrant.</p>
+            <p>For some people, emotions arrive with extraordinary speed. A minor frustration can escalate before there is time to think through it. A disappointing interaction can occupy the rest of the day. Embarrassment can become all-consuming. And sometimes, the problem is not feeling too much, but being unable to work out what is being felt at all.</p>
+            <p>Research has consistently found an association between ADHD and difficulties with emotional regulation. A 2020 meta-analysis of 13 studies involving 2,535 adults found significantly greater emotional dysregulation among adults with ADHD than among comparison groups, including pronounced emotional lability — the tendency for emotional states to shift rapidly or intensely. A 2023 systematic review of adult ADHD research similarly found that emotional regulation difficulties were associated with ADHD symptom severity and could affect social and everyday functioning.</p>
+            <p>Emotional dysregulation is not currently a core diagnostic criterion for ADHD, which means it is possible to have ADHD without experiencing it. But it is a well-established and clinically significant part of the experience for many people with the condition. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11318975/" target="_blank" rel="noopener">Research published in <em>The Journal of Psychiatry &amp; Neuroscience</em> in 2024</a> describes how difficulties with generating and regulating emotional responses can contribute to the challenges experienced by adults with ADHD.</p>
+            <p>ADHD does not stop affecting a person once they have managed to sit still, finish a task or remember an appointment. Emotional experiences can affect friendships, family relationships, self-esteem, conflict and the ability to recover from ordinary disappointments. They can shape the way a person experiences the world just as significantly as difficulties with attention or organisation.</p>
+            <p>...And they can be remarkably difficult to explain to someone who does not experience them in the same way.</p>
+            <h2>Feeling something and showing it are not the same thing</h2>
+            <p>One of the assumptions we make about emotion is that the feeling and its expression should correspond neatly. If you are sad, you cry. If you care, you show concern. If something matters to you, your reaction should make that obvious.</p>
+            <p>Human beings do not actually work that neatly.</p>
+            <p>The experience of an emotion, the ability to identify it, the process of regulating it, and the way it is expressed are related but distinct things. Someone can feel distressed without crying. Someone can cry without being able to explain exactly why. Someone can be overwhelmed by an emotion and appear perfectly composed, while someone else can react intensely to a situation that seems relatively minor.</p>
+            <p>Grief makes this particularly apparent. There is no single correct way to react to a death. Some people cry immediately; others feel numb, distracted or strangely normal. Some experience their grief much later, when the practicalities and immediate demands surrounding a loss have passed. Some cry frequently, while others rarely do. None of these responses, taken in isolation, provides a reliable measurement of how much the person loved the individual who died.</p>
+            <p>The problem is that other people often treat emotional expression as evidence. If someone doesn't cry, they must not be sad enough. If they cry over something small, they must be oversensitive. If their reaction doesn't match the significance assigned to an event by everyone else, their feelings become something to question.</p>
+            <p>For someone who struggles to identify, process or regulate emotions, this can create an additional layer of confusion. They may already be trying to understand their own response, only to find that they are also expected to justify it to other people.</p>
+            <p>ADHD can complicate this further. Emotional regulation involves processes such as inhibiting an immediate reaction, shifting attention, tolerating frustration and choosing how to respond rather than acting on the first impulse. These overlap with areas of functioning that can be difficult for people with ADHD. When an emotion is intense, redirecting attention away from it or pausing before responding can be harder.</p>
+            <p>That does not mean ADHD determines what a person feels, or that every unexpected emotional response is caused by the condition. It means that, for some people with ADHD, managing an emotion once it appears can be a genuine difficulty rather than a simple matter of deciding to calm down.</p>
+            <p>And the resulting expression may not look the way anyone expects.</p>
+            <h2>When the smallest things hit the hardest</h2>
+            <p>There is a particular kind of embarrassment associated with being upset over something that other people consider insignificant.</p>
+            <p>A broken object, a small animal injured by accident, a fictional character's death, a passing comment that seems to have struck a nerve. Sometimes the reaction feels completely understandable from the inside, even when it is difficult to articulate why it has become so intense. Other times, the emotion arrives before there is any clear explanation for it.</p>
+            <p>This is one way emotional dysregulation can manifest in ADHD: not necessarily by making someone sadder, kinder, more empathetic or more sensitive than everyone else, but by making certain emotional responses harder to regulate once they have been triggered.</p>
+            <p>It is important to distinguish emotional intensity from empathy. Crying over a butterfly does not automatically make someone more compassionate than a person who doesn't cry. Failing to cry at a funeral does not make someone less compassionate. Emotional responses are influenced by many things, including personal associations, stress, fatigue, past experiences and the circumstances in which an event occurs.</p>
+            <p>ADHD does not give someone a special claim to feeling more deeply. What it can do is contribute to difficulties managing emotional responses, and those difficulties may be confusing or disproportionate to the person experiencing them as well as to anyone watching.</p>
+            <p>There is also a difference between an emotion being intense and an emotion being easy to understand. Sometimes a person knows exactly why they are upset but cannot make the feeling subside. Sometimes they know they are upset but cannot identify what set it off. Sometimes they experience very little in a situation where they expected to feel something, and only later begin to wonder why.</p>
+            <p>The experience of an emotion is not always accompanied by a clear explanation of it, and not every emotional response arrives with a convenient label attached.</p>
+            <h2>The strange experience of feeling detached</h2>
+            <p>There is another side to this that is harder to describe: the feeling of being detached from things that, by all reasonable standards, should matter.</p>
+            <p>You can care about someone and still find that your emotional connection to them is not constantly present in your awareness. You can know that something is important without feeling its importance at every moment. You can understand that you miss someone without experiencing that feeling continuously. Then something happens, maybe it's a conversation, a photograph, a sudden memory, and the emotional significance of that person or event returns with startling force.</p>
+            <p>People sometimes describe this informally as a lack of <em>emotional permanence</em>, or say that someone has slipped out of their mind when they are no longer physically present. ADHD can affect working memory, attention and the ability to keep intentions or information readily accessible. These difficulties can contribute to forgetting to reach out, losing track of relationships during busy periods, or finding that a feeling is less accessible when the person or situation is not immediately in front of you. That is not the same as forgetting that someone exists, and it certainly does not mean that the person matters less.</p>
+            <p>Emotional detachment can also have many other explanations, including stress, grief, depression and dissociation. It should not automatically be attributed to ADHD, but the distinction between <em>knowing that you care</em> and <em>actively feeling that care in a given moment</em> is worth acknowledging.</p>
+            <p>This is especially important in relationships, where people understandably look for visible and consistent expressions of affection. A person who does not regularly communicate their feelings may be interpreted as distant. Someone whose emotions arrive in bursts may be interpreted as inconsistent. Someone who is emotionally overwhelmed one day and apparently unaffected the next may struggle to explain the difference themselves. The outside observer sees inconsistency; the person experiencing it may be equally confused by it.</p>
+            <h2>Understanding the response without excusing every action</h2>
+            <p>There is a limit to what an explanation can do.</p>
+            <p>Emotional dysregulation can help explain why a person reacts intensely, struggles to recover from frustration, or has difficulty pausing before expressing an emotion. It does not mean that every reaction is justified, that other people should never be hurt, or that the impact of one's behaviour does not matter.</p>
+            <p>People with ADHD can still learn ways to manage emotional responses, communicate more clearly and repair relationships after conflict. Depending on the person, this can involve developing emotional awareness, recognising triggers, practising regulation strategies, addressing coexisting difficulties and seeking professional support. ADHD treatment may help with some aspects of functioning, although emotional regulation does not necessarily improve in lockstep with attention or impulsivity.</p>
+            <p>The purpose of understanding emotional dysregulation is not to turn it into a blanket excuse. It is to identify what is happening so that it can be addressed more effectively. There is a difference between saying, “I cannot help how I feel, so everyone else must deal with it,” and saying, “I am trying to understand why this happens, take responsibility for what I do, and find ways to respond differently.”</p>
+            <p>The same principle applies to the people around us. Understanding that someone may experience or express emotions differently does not require pretending that their behaviour has no consequences. It does, however, require recognising that a person's outward reaction is not a perfect window into their inner life.</p>
+            <p>Sometimes the work is learning to regulate an emotion. Sometimes it is learning to recognise it. Sometimes it is explaining to another person that a lack of visible emotion is not necessarily a lack of feeling.</p>
+            <p>And sometimes it is accepting that an emotion does not need to look convincing to someone else in order to be real.</p>
+            <h2>So, why wasn't I crying?</h2>
+            <p>I could offer a neat explanation for the contrast between the two deaths; I could try to fit both memories into a single account of emotional dysregulation, or use them as evidence that I process emotions differently. But that would be pretending to know more than I do. A memory or an unexpected emotional response does not explain itself simply because we have found a psychological term that seems to fit.</p>
+            <p>What these experiences do illustrate is how unreliable our assumptions about emotion can be. We expect grief to look like grief, affection to look like affection, and distress to appear in proportion to whatever we have decided deserves it. When someone fails to meet those expectations, we start making judgements about their character.</p>
+            <p>For people with ADHD, whose difficulties may extend beyond attention and into the regulation of emotional responses, those judgements can be particularly damaging. The person who cries too easily may be told to toughen up. The person who doesn't cry may be accused of not caring. The person who struggles to explain what they feel may be treated as though they have nothing to say.</p>
+            <p>None of this means that every emotional difference is ADHD, or that there is one correct way for neurodivergent people to feel. It means that emotional experiences are complicated, and that the expression we see is only one part of them.</p>
+            <p>We cannot always control when a feeling appears. We may not immediately understand why it is there, and we may not express it in a way that makes sense to everyone around us. We can, however, learn to understand our own responses, take responsibility for our actions, and resist the temptation to measure another person's feelings by how convincingly they perform them.</p>
+            <p>My brother's question has stayed with me for a long time. Not because I think he was wrong to grieve, or because he was wrong to wonder how I was feeling, but mostly as it captures an expectation so many of us take for granted: that if something matters, we should be able to see it on someone's face.</p>
+            <p>Well, sometimes we can, sometimes we can't.</p>
+            <p>And a person's inability to show you what you expect to see is not proof that there is nothing there.</p>
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container container-narrow">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="images/RC-North.png" width="38" height="38" class="rounded-circle" alt="logo">
+                        <div>
+                            <div style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;color:var(--ink);">Rotaract Club</div>
+                            <div style="font-size:0.75rem;color:var(--muted);">Thane North</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Quick Links</div>
+                    <div class="footer-links">
+                        <a href="index.html#about">About</a>
+                        <a href="Projects.html">Projects</a>
+                        <a href="Gallery.html">Gallery</a>
+                        <a href="Blogs.html">Blogs</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Connect</div>
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/company/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.facebook.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p class="footer-copy">© 2025 Rotaract Club of Thane North. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    </script>
+</body>
+</html>
