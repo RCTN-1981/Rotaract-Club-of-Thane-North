@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Why Do I Have to Be on the Verge of a Breakdown to Get Anything Done? — Rotaract Club of Thane North</title>
+    <meta name="description" content="On ADHD, executive dysfunction and urgency-based motivation — why starting can be so hard, and why working only under pressure comes at a cost.">
+    <link rel="icon" href="images/RCNorth.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #6d4aa0; --green-dark: #4a2f70; --green-light: #f3eefb;
+            --ink: #111827; --muted: #6b7280; --border: #e5e7eb; --white: #ffffff;
+            --radius: 14px; --radius-lg: 20px; --maxw: 1150px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--ink); line-height: 1.6; }
+
+        .navbar { background: rgba(255,255,255,0.92) !important; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0.75rem 0; }
+        .navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+        .navbar-brand-text .brand-main { font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 800; color: var(--ink); }
+        .navbar-brand-text .brand-sub { font-size: 0.72rem; color: var(--muted); }
+        .nav-link { font-size: 0.875rem; font-weight: 500; color: var(--muted) !important; padding: 0.4rem 0.75rem !important; border-radius: 8px; }
+        .nav-link:hover { color: var(--green) !important; background: var(--green-light); }
+        .btn-join { background: var(--green); color: var(--white) !important; padding: 0.45rem 1.2rem !important; border-radius: 100px !important; font-weight: 600 !important; }
+        .btn-join:hover { background: var(--green-dark) !important; }
+
+        .article-header { background: linear-gradient(135deg, #eef6f1 0%, #fffef9 100%); padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+        .back-link { font-size: 0.85rem; font-weight: 600; color: var(--green); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1.5rem; }
+        .back-link:hover { color: var(--green-dark); }
+        .article-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--green); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 1rem; }
+        .article-title { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; color: var(--ink); line-height: 1.25; max-width: 760px; margin-bottom: 0.5rem; }
+        .article-subtitle { font-size: 1rem; font-weight: 600; color: var(--green); font-style: italic; margin-bottom: 1rem; }
+        .article-meta { font-size: 0.85rem; color: var(--muted); display: flex; gap: 1rem; flex-wrap: wrap; }
+        .article-meta span { display: flex; align-items: center; gap: 5px; }
+
+        .article-body { max-width: 720px; margin: 0 auto; padding: 3rem 0; }
+        .article-body p { font-size: 1.05rem; color: #374151; line-height: 1.85; margin-bottom: 1.4rem; }
+        .article-body h2 { font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--ink); margin: 2.25rem 0 1.1rem; line-height: 1.35; }
+        .article-body a { color: var(--green); font-weight: 500; }
+        .article-body a:hover { color: var(--green-dark); }
+        .article-body strong { color: var(--ink); }
+        .article-body p.article-note { font-size: 0.92rem; color: var(--muted); font-style: italic; border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 2rem; }
+
+        @media (min-width: 1200px) { .container-narrow { max-width: var(--maxw); } }
+
+        footer { background: #f7f5ef; border-top: 1px solid var(--border); padding: 3rem 0 1.5rem; margin-top: 3rem; }
+        .footer-heading { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 1rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; }
+        .footer-links a:hover { color: var(--green); }
+        .social-row { display: flex; gap: 0.75rem; }
+        .social-btn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--border); color: var(--ink); text-decoration: none; transition: all var(--transition); }
+        .social-btn:hover { background: var(--green); color: white; transform: translateY(-2px); }
+        .footer-copy { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+        <div class="container container-narrow">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="images/RC-North.png" alt="RCTN" width="40" height="40" class="rounded-circle">
+                <div class="navbar-brand-text">
+                    <div class="brand-main">Rotaract Club</div>
+                    <div class="brand-sub">Thane North</div>
+                </div>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#members">Members</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Blogs.html">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-2"><a class="nav-link btn-join" href="index.html#contact">Join Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ARTICLE HEADER -->
+    <div class="article-header">
+        <div class="container container-narrow">
+            <a href="Blogs.html" class="back-link"><i class="bi bi-arrow-left"></i> Back to Blogs</a>
+            <div class="article-eyebrow"><i class="bi bi-journal-text"></i> Health &amp; Wellness</div>
+            <h1 class="article-title">Why Do I Have to Be on the Verge of a Breakdown to Get Anything Done?</h1>
+            <p class="article-subtitle">ADHD, Executive dysfunction and Urgency based motivation</p>
+            <div class="article-meta">
+                <span><i class="bi bi-clock"></i> 15 min read</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARTICLE BODY -->
+    <main class="container container-narrow">
+        <article class="article-body">
+            <p>There is a particular kind of frustration that comes with knowing exactly what you need to do and being completely, spectacularly unable to do it.</p>
+            <p>The task is right there. You understand it. You might even know how to do it, step by step. You have had hours, perhaps days, to get started. You have thought about it so many times that the task has occupied a ridiculous amount of your mental space already.</p>
+            <p>And yet, somehow, you still cannot begin.</p>
+            <p>It feels like being stuck behind a glass wall. You can see the work on the other side. You know you need to get to it. You might spend the entire day thinking about getting through that wall, getting increasingly frustrated with yourself for not doing something that should, in theory, be perfectly manageable.</p>
+            <p>Then the deadline gets close enough to become frightening. Your head starts buzzing. Your stomach turns. The anxiety becomes difficult to ignore, and suddenly, finally, you can move.</p>
+            <p>Not necessarily well, nor calmly, but you can finally move.</p>
+            <p>The most infuriating part is that it works. The work gets done, often just in time, which makes the entire process look like a bizarrely effective productivity strategy from the outside. Meanwhile, you are left wondering why something that should have been difficult but manageable required you to feel like you were falling apart before you could even begin.</p>
+            <p>For people with ADHD, this experience can be particularly familiar. It is often dismissed as procrastination, laziness or poor time management. But those explanations miss something important: the problem is not always knowing what to do. Sometimes, it is getting yourself to do it at all.</p>
+            <h2>The difference between wanting to do something and being able to start</h2>
+            <p>Procrastination is usually described as putting off a task despite knowing that doing so will make things worse. It sounds like a straightforward decision: you have something important to do, but you choose something more enjoyable instead.</p>
+            <p>Sometimes, yeah, that is what happens. But the experience is not always so simple.</p>
+            <p>You can want to finish an assignment, respond to an email or complete an application, and still find yourself unable to initiate it. You can spend hours worrying about the consequences of not doing it, mentally rehearsing the steps involved, and promising yourself that you will start in five minutes. You can feel so guilty about avoiding the task that even the things you do instead stop being enjoyable.</p>
+            <p>At that point, calling it a lack of motivation seems almost absurd. You are thinking about the task constantly. You care about getting it done. You may be expending a remarkable amount of mental energy on the fact that you are not doing it.</p>
+            <p>The missing piece is the transition from intention to action.</p>
+            <p>ADHD is associated with difficulties in executive functioning: the processes involved in planning, organising, prioritising, regulating attention and initiating goal-directed behaviour. These processes help us translate an intention into a sequence of actions, particularly when a task is boring, complicated, overwhelming or separated from its consequences by a long stretch of time.</p>
+            <p>For someone experiencing executive dysfunction, recognising that a task matters does not automatically make it easier to begin. Knowing the steps is not the same as being able to initiate them. And understanding the consequences of delay does not necessarily make those consequences feel immediate enough to change what happens in the present.</p>
+            <p>This is one reason ADHD-related procrastination can be so distressing. The person is not necessarily unaware of the problem. They may be painfully aware of it, and still struggle to do what they know needs to be done.</p>
+            <p>A <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11184226/" target="_blank" rel="noopener">2024 scoping review on the experience of mental effort in ADHD</a> discusses how effort, frustration and the subjective experience of demanding tasks may contribute to difficulties engaging with them. Research cannot reduce every person's experience to one mechanism, but it supports a more complicated picture than simply not caring enough to try.</p>
+            <h2>Why does the deadline suddenly make everything possible?</h2>
+            <p>For a long time, the most confusing part of this pattern is that the ability to work seems to appear at the very last minute.</p>
+            <p>The task has not necessarily become easier, you did not suddenly acquire new skills or discovered some hidden reserve of discipline. What has changed is the situation surrounding it.</p>
+            <p>A deadline that once seemed distant is now immediate. The consequences that felt abstract have become tangible. There is less room to postpone the decision to begin. Urgency supplies something that was missing before: a sufficiently powerful reason to act <em>right now</em>.</p>
+            <p>Researchers studying ADHD have examined the roles of motivation, reward, delay and executive functioning in explaining why some tasks are harder to engage with than others. One proposed explanation is that delayed outcomes can exert less influence on present behaviour, while immediate consequences and rewards can be more effective in directing attention and action. This is not a universal explanation for ADHD, nor does it mean that everyone with the condition responds to deadlines in the same way. It does, however, help explain why an approaching deadline can change the experience of a task so dramatically.</p>
+            <p>A 2022 review, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9066661/" target="_blank" rel="noopener"><em>Studying Motivation in ADHD: The Role of Internal Motives and the Relevance of Self Determination Theory</em></a>, examines how motivation in ADHD may be affected by the task itself, the environment and the availability of immediate incentives. A <a href="https://www.tandfonline.com/doi/full/10.1080/00050067.2023.2218540" target="_blank" rel="noopener">2023 study of ADHD symptoms and procrastination</a> also found associations between ADHD symptoms, task aversiveness, impulsiveness and expectations of success.</p>
+            <p>The important distinction is that urgency can make action more likely without making the process easier.</p>
+            <p>For some people, the final push comes from excitement or the satisfaction of racing against the clock. For others, it comes from fear. The deadline becomes so threatening that the anxiety of continuing to avoid the task finally outweighs the difficulty of starting it.</p>
+            <p>And so the work begins, not because the person has suddenly stopped struggling, but because the alternative has become unbearable.</p>
+            <h2>When anxiety becomes the starting mechanism</h2>
+            <p>This is where the experience can become particularly unpleasant.</p>
+            <p>At first, there is the task itself. Then there is the knowledge that the task is not getting done. Then comes the frustration, the guilt, the mental calculations about how much time remains, and the growing conviction that you have somehow managed to make a difficult situation worse by being unable to do the one thing that would resolve it.</p>
+            <p>Eventually, the anxiety becomes physical. There is a strange buzz in your head, a restless urgency, a sense that you need to do something immediately even if you cannot yet make yourself do the thing that actually needs doing.</p>
+            <p>The anxiety interferes with the work. It makes thinking harder, makes mistakes more likely, and leaves less room to approach the task carefully. Yet it also supplies the pressure that finally gets you moving.</p>
+            <p>This is not a particularly sustainable arrangement. It is difficult to concentrate when your attention is split between the work and the growing sense of panic around it. It is difficult to make thoughtful decisions when every minute feels like another piece of evidence that you have failed. And it is difficult to produce your best work when so much of your available energy has already gone into forcing yourself to begin.</p>
+            <p>Sometimes, the result is a frantic burst of productivity. Other times, it is a rushed submission that does not reflect what you can actually do. Most of the time, the work remains difficult even under pressure. The deadline may get you moving, but it does not magically remove the executive-function difficulties that made starting so hard.</p>
+            <p>And when the task is finally finished, the relief can be enormous. The immediate threat has passed. You can breathe again. You might even feel a rush of satisfaction at having managed to pull it off.</p>
+            <p>But relief is not the same as a solution. If panic was the only thing that got you through the task, you have also learnt something about what it takes to get yourself moving next time. You may begin to expect that you will not be able to act until the pressure becomes unbearable. You may even start to distrust the quieter, earlier stages of a deadline, because you have repeatedly experienced them as periods in which nothing seems to happen.</p>
+            <p>The cycle reinforces itself: delay, anxiety, frantic action, relief. The task gets completed, but the cost of completing it is easy to overlook because the final result is visible and the distress that preceded it is not.</p>
+            <h2>The problem with being told you work well under pressure</h2>
+            <p>There is a particular kind of misunderstanding that comes with being someone who consistently gets things done at the last minute.</p>
+            <p>People see the finished assignment, the completed project, the work submitted just before the deadline. They may see someone who appears capable of pulling things together when it counts. They might even describe you as someone who thrives under pressure.</p>
+            <p>What they do not necessarily see is the time spent trying to start. They do not see the hours of avoidance that are not particularly restful, because the task is still occupying your mind. They do not see the frustration of watching time pass while feeling unable to use it. And they do not see the anxiety required to finally push through.</p>
+            <p>When the work is completed, the evidence seems straightforward: you were capable of doing it all along.</p>
+            <p>But <strong>being able to complete a task under extreme pressure does not mean you were capable of starting it calmly all along.</strong></p>
+            <p>The finished product tells you something about what a person can produce. It tells you much less about the conditions under which they were able to produce it.</p>
+            <p>This distinction matters because repeated success under pressure can obscure a genuine difficulty. If someone keeps meeting deadlines, others may conclude that there is no problem. If the person themselves keeps managing to scrape through, they may begin to think that the struggle beforehand is simply a personal failing they ought to have outgrown.</p>
+            <p>The result is a strange double bind: you are judged for the delay, but the eventual success is used as evidence that the delay should never have happened.</p>
+            <p>And because the task does eventually get done, the amount of distress involved can seem irrelevant. Nobody sees the hours that went into trying to get started, so those hours do not count for much. Nobody sees the anxiety as part of the workload, so it is easy to assume that the only real work was the thing that appeared on the page.</p>
+            <p>For someone with ADHD, this can make it harder to recognise the need for support. The problem is not always an inability to do the task. It may be a persistent difficulty accessing the ability to do it at the time it is needed.</p>
+            <p>There is also the emotional weight of repeatedly experiencing this pattern.</p>
+            <p>Every unfinished task becomes another reason to be annoyed with yourself. Every missed opportunity to start earlier becomes evidence in an increasingly familiar argument: you should have done this already; you knew this was coming; why are you like this?</p>
+            <p>The frustration can turn into hopelessness, especially when you have tried the usual advice. Make a list, break the task into smaller pieces, start earlier, put your phone away, just do five minutes... Essentially every productivity hack under the sun.</p>
+            <p>These strategies can be useful. External reminders, smaller steps, accountability and more immediate rewards can all help some people make tasks more manageable. But when advice is delivered as though the difficulty is simply a failure to organise yourself properly, it can leave you feeling even more defective when knowing what to do still does not translate into doing it.</p>
+            <p>The issue is not that practical strategies are useless. It is that a strategy needs to address the actual point at which things break down.</p>
+            <p>If the task feels too vague, defining the first concrete action may help. If it feels overwhelming, reducing its scope may make it easier to approach. If there is no immediate feedback or sense of progress, adding external structure or a short check-in with someone else may help make the task feel more immediate. If anxiety has become tangled up with starting, addressing that anxiety may matter as much as improving the workflow.</p>
+            <p>There is no single trick that works for everyone, and persistent difficulties with task initiation can have causes beyond ADHD, including anxiety, depression, burnout and other forms of stress. A pattern of functioning only when distressed is worth taking seriously, rather than treating it as an inconvenient personality trait.</p>
+            <p>Most importantly, the goal should not be to find a more efficient way to panic. It should be to make beginning possible without having to reach that point.</p>
+            <p>One of the most exhausting parts of this experience is how much effort can go into a task before any visible work has been completed.</p>
+            <p>There is the task itself, and then there is the effort of trying to make yourself begin. There is the time spent avoiding it, the anxiety about avoiding it, the anger at yourself for avoiding it, and the growing fear that you are running out of time. By the time you finally sit down to work, you may already feel as though you have spent the day doing nothing but struggling.</p>
+            <p>From the outside, it can look like you simply did not start until the last minute.</p>
+            <p>From the inside, it can feel as though you have been fighting with the task for hours.</p>
+            <p>ADHD does not explain every instance of procrastination, and not every person with ADHD experiences this cycle. But difficulties with executive functioning, motivation and regulating attention can make the transition from intention to action unusually difficult. When urgency becomes the most reliable way to bridge that gap, it can start to feel less like a choice and more like a requirement.</p>
+            <p>And that is a miserable way to have to function.</p>
+            <p>I do not think the answer is to romanticise the last-minute burst of productivity, or to pretend that completing a task makes the preceding struggle irrelevant. Nor do I think the answer is to treat every unfinished task as proof that someone has not tried hard enough.</p>
+            <p>The fact that you can do something does not mean you can access that ability on demand. The fact that pressure sometimes gets you moving does not mean you need to be under pressure. And the fact that you have managed to make a difficult system work, repeatedly, does not mean the system is working well for you; there is a difference between being productive and being pushed to the point where you have no choice but to act.</p>
+            <p>Ideally, getting something done should not require you to reach the edge of what you can tolerate first. You should be able to begin before the fear becomes unbearable. You should be able to work without spending half your energy fighting yourself.</p>
+            <h2>Learning to work without setting yourself on fire</h2>
+            <p>It is tempting to think that if pressure is what finally gets you moving, then perhaps pressure is what you need. Perhaps you should leave everything until the last minute, manufacture a crisis, or make the consequences of not completing a task frightening enough that you cannot ignore them.</p>
+            <p>And in the short term, urgency can work. That is part of what makes the pattern so difficult to escape.</p>
+            <p>But a method that produces results by making you miserable is not necessarily a method that serves you well. It can cost you time, sleep, confidence and the ability to approach work without dread. It can also make it harder to distinguish between the ordinary discomfort of beginning a demanding task and the overwhelming distress you have come to associate with getting anything done.</p>
+            <p>Support for ADHD-related executive dysfunction often involves making tasks more concrete, reducing the number of decisions required to begin, introducing external structure, and creating smaller, more immediate sources of feedback or reward. For some people, ADHD treatment can also improve aspects of attention and executive functioning. The right approach depends on the individual and on what is contributing to the difficulty.</p>
+            <p>None of this guarantees that every task will suddenly become easy. The point is not to eliminate all discomfort or to turn yourself into someone who enjoys every tedious obligation. It is to reduce the distance between knowing you need to do something and being able to take the first step.</p>
+            <p>It is also worth remembering that needing help with that distance does not make you incapable. There is a difference between being able to do a task and being able to reliably initiate it under ordinary conditions. When those two abilities do not line up, the answer is not necessarily to demand more willpower from the person who is already exhausted from trying.</p>
+            <p>Sometimes, the most useful question is not, “Why can't I just do this?” It is, “What is making it so difficult to start, and what would make starting less difficult?”</p>
+            <p>That question leaves room for something other than blame. It allows for the possibility that the difficulty is real, that the current strategy is costing too much, and that there are other ways to approach it.</p>
+            <p class="article-note">(Post script author’s note: The clearest example of what I’m talking about in this article is the article itself. The idea for this project was conceived sometime in late September. I managed to voice it out loud sometime around 3rd October. After failing to internally gain any progress on this, I forced myself into accountability on 19th October by telling people that I was planning this project. I then set an arbitrary deadline 4 hours ago by telling someone that I’ll send them these articles by the end of the day. It is October 23rd, 23:24 as I write this, and I have ~ 36 minutes to submit all three articles. Perhaps this still constitutes as lighting myself on fire to complete a task; I’ve been typing for an hour straight to meet my own arbitrary deadline and admittedly, I do feel stressed! The cycle continues, pop a bottle. But hey, at least I got it done, right?)</p>
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container container-narrow">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="images/RC-North.png" width="38" height="38" class="rounded-circle" alt="logo">
+                        <div>
+                            <div style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;color:var(--ink);">Rotaract Club</div>
+                            <div style="font-size:0.75rem;color:var(--muted);">Thane North</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Quick Links</div>
+                    <div class="footer-links">
+                        <a href="index.html#about">About</a>
+                        <a href="Projects.html">Projects</a>
+                        <a href="Gallery.html">Gallery</a>
+                        <a href="Blogs.html">Blogs</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-heading">Connect</div>
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/company/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.facebook.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/rcthanenorth/" target="_blank" class="social-btn"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p class="footer-copy">© 2025 Rotaract Club of Thane North. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    </script>
+</body>
+</html>
